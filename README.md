@@ -24,7 +24,7 @@ Branches par années
 ## Python
 
 Version >= 3.8  
-Dépendance provenant du site officiel de Django pour la version utilisé dans ce workshop : https://docs.djangoproject.com/en/4.1/faq/install/#faq-python-version-support
+Dépendance provenant du site officiel de Django pour la version utilisé dans ce workshop : https://docs.djangoproject.com/en/4.1/faq/install/#faq-python-version-support  
 Documentation Django officielle pour la version utilisée de Django : https://docs.djangoproject.com/en/4.1/
 
 > Le workshop a été testé avec la version 3.11.1 de Python
