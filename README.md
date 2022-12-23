@@ -30,39 +30,37 @@ Documentation Django officielle pour la version utilisée de Django : https://do
 > Le workshop a été testé avec la version 3.11.1 de Python
 
 ```
-# Windows
 python --version
 ```
 
-```
-# Linux
-python3 --version
-```
+**IMPORTANT** Vous concerne si vous utilisez Linux :  
+Sur Linux toutes les commandes python doivent commencée par `python3`, donc `python --version` sur Windows, devra s'écrire `python3 --version` sur Linux.  
+Les commande pip doivent également commencée par `pip3`, donc `pip --version` sur Windows, devra s'écrire `pip3 --version` sur Linux.  
+C'est une source d'erreur très fréquente, il faut s'y faire au début, cela devient un automatisme par la suite...
 
 ## pip
 
-> Le workshop a été testé avec la version 21.3 de pip
+> Le workshop a été testé avec la version 22.3.1 de pip
 
 ```
-# Windows
 pip --version
-```
-
-```
-# Linux
-pip3 --version
 ```
 
 pip peut être mit à niveau avec :
 
 ```
-# Windows
 python -m pip install --upgrade pip
 ```
 
 # Installation et configuration
 
 Vous trouverez ci-dessous les quelques commandes qui vous permettront de commencer à travailler sur le workshop.
+
+
+# **TODO** Update à partir d'ici
+
+
+
 
 1. Cloner le répo Github du workshop, vous connaissez c'est easy ;)
 
