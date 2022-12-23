@@ -21,6 +21,8 @@ Branches par années
 
 # Prérequis
 
+Dans ce workshop nous utiliserons la version 4.1.4 de Django, pour ce faire, il faut avoir installé certaines choses, en voici la liste et les explications.
+
 ## Python
 
 Pour le workshop vous aurez besoin de la version de Python >= 3.8
@@ -57,16 +59,11 @@ python -m pip install --upgrade pip
 
 Vous trouverez ci-dessous les quelques commandes qui vous permettront de commencer à travailler sur le workshop.
 
-
-# **TODO** Update à partir d'ici
-
-
-
-
 1. Cloner le répo Github du workshop, vous connaissez c'est easy ;)
 
 > SSH recommandé
 
+(TODO): check les liens et commandes
 ```
 git clone git@github.com:HE-Arc/workshop-django.git
 cd workshop-django
@@ -75,9 +72,11 @@ git checkout start
 
 2. Créer un environnement virtuel (= virtual environment = venv), c'est très important !
 
-Le gestionnaire de paquet en Python s'appelle pip. La technique de base consiste à créer un fichier nommé requiements.txt dans lequel nous allons pouvoir lister toutes les bibliothèques (dépendances) dont notre projet a besoin pour fonctionner correctement.
+**Détails et explications**
 
-Par défaut pip installe toutes les bibliothèques globalement sur l'ordinateur, ce qui pourrait paraitre comme une bonne idée à la base car si nous avons un autre projet qui nécessite toutes ou certaines mêmes bibliothèques, les bibliothèques en question seront déjà installées.
+Le gestionnaire de paquet en Python s'appelle pip. La technique de base consiste à créer un fichier nommé requirement.txt dans lequel nous allons pouvoir lister toutes les bibliothèques (dépendances) dont notre projet a besoin pour fonctionner correctement.
+
+Par défaut pip installe toutes les bibliothèques globalement sur l'ordinateur, ce qui pourrait paraitre comme une bonne idée à la base car si nous avons un autre projet qui nécessite toutes ou certaines mêmes bibliothèques, les bibliothèques en question seront déjà installées... MAIS...
 
 Mais en réfléchissement un peu on s'aperçoit très vite que c'est une très mauvaise idée. Certaines bibliothèques pourraient ne pas être compatibles ce qui pourrait rapidement devenir difficile à gérer.
 
@@ -92,50 +91,38 @@ Vous devez le créer une fois au début et/ou à chaque fois que vous clonez le 
 **IMPORTANT** : les dossiers et fichiers de l'environnement virtuel ne doivent JAMAIS être push !  
 **IMPORTANT 2** : l'environnement virtuel peut être construit de manière légèrement différente en fonction de l'OS, de l'environnement virtuel utilisé, ou pour d'autre raisons. Contrôlez l'architecture des dossiers de votre venv si vous avez des soucis à exécuter l'une ou l'autre des commandes suivantes et adaptez les commandes suivantes en fonction.
 
+**Commandes**
+
 Créer un nouvel env virtuel
 
 ```
-# Windows
 python -m venv .venv
-```
-
-```
-# Linux
-python3 -m venv .venv
 ```
 
 Activer l'env virtuel
 
 ```
-# Windows
 source .venv/Scripts/activate
 # Or
 . .venv/Scripts/activate
-```
-
-```
-# Linux
-source .venv/bin/activate
-# Or
-. .venv/bin/activate
 ```
 
 > Si la commande ne fonctionne pas, c'est peut être un problème de permission, essayez d'exécuter en mode admin.
 
 3. Installer les dépendances dans le venv.
 
-Il existe des débats sur le net au sujet d'une meilleure utilisation de ce fichier.  
-Dans ce workshop et dans le projet que vous réaliserez lors de ce cours (projet de petite taille), le fichier requirements.txt est tout à fait adapté.  
-Mais si vous souhaitez creuser un peu, des techniques plus avancées existent et vous pouvez checker pipenv (https://pipenv-fork.readthedocs.io/en/latest/basics.html) ou encore poetry (https://python-poetry.org/)
+**Détails et explications**
+
+Il existe des débats sur le net au sujet d'une meilleure utilisation de ce fichier.
+
+Dans ce workshop et dans le projet que vous réaliserez lors de ce cours (projet de petite taille), le fichier requirements.txt est tout à fait adapté.
+
+Mais si vous souhaitez creuser un peu, des techniques plus avancées existent et vous pouvez checker pipenv (https://pipenv-fork.readthedocs.io/en/latest/basics.html) ou encore poetry qui est encore plus avancé (https://python-poetry.org/)
+
+**Commandes**
 
 ```
-# Windows
 pip install -r requirements.txt
-```
-
-```
-# Linux
-pip3 install -r requirements.txt
 ```
 
 4. Démarrer le serveur de dev
@@ -143,18 +130,10 @@ pip3 install -r requirements.txt
 Il est possible de structurer son projet différemment, la structure que nous allons utilisez est celle proposée dans Django par défaut. Une fois que vous aurez compris et que vous serez à l'aise n'hésitez pas à chercher comment l'améliorer et l'adapter au mieux pour votre projet.
 
 ```
-# Windows
-cd resistanceproject
 python manage.py runserver
 ```
 
-```
-# Linux
-cd resistanceproject
-python3 manage.py runserver
-```
-
-Si vous voyez une image d'espace en atteignant `localhost:8000`... C'est que c'est tout bon !
+TODO: Si vous voyez une image d'espace en atteignant `localhost:8000`... C'est que c'est tout bon !
 
 ---
 
@@ -165,7 +144,7 @@ La suite vous sera utile lorsque vous devrez créer votre propre projet pour le 
 
 ---
 
-# Méthodologie - Comment va se dérouler le workshop ?
+# (TODO) Méthodologie - Comment va se dérouler le workshop ?
 
 L'app est pré-existante. Il faudra remplir les trous (TODOs) pour la rendre fonctionnelle (eeeasy!).
 
@@ -177,85 +156,13 @@ Les réponses se trouvent dans le README sur la branche `start` mais **c'est de 
 
 # Initialiser un nouveau projet Django de zéro
 
-Ici vous avez un repo avec un projet déjà existant, en réalité c'est juste pour nous faire gagner un peu de temps, mais c'est extrêmement simple à reproduire. Voici donc les premières étapes que vous devrez suivre afin de créer un nouveau projet de zéro (Si ce n'était pas assez clair, les étapes qui vont suivre ne doivent PAS être effectué pour ce workshop, c'est à faire si vous commencez un nouveau projet) :
+Durant le workshop nous sommes parties d'un projet déjà existant, en réalité c'est juste pour nous faire gagner un peu de temps, mais c'est extrêmement simple à reproduire.
 
-1. Créer un dossier et déplacez-vous y.
-
-2. S'assurer d'avoir la bonne version de python et de pip pour la version de Django que vous souhaitez utiliser
-
-3. Créer un environnement virtuel (venv)
-
-> **Important** : pour l'environnement virtuel la hiérarchie du projet peut être légèrement différente en fonction de l'OS ou autres. Contrôlez donc l'architecture des dossiers du venv.)
-
-```
-# Windows
-python -m venv .venv
-source .venv/Scripts/activate
-```
-
-```
-# Linux
-python3 -m venv .venv
-source .venv/bin/activate
-```
-
-4. Installer Django
-
-```
-# Windows
-pip install Django
-```
-
-```
-# Linux
-pip3 install Django
-```
-
-5. Créer le projet Django et déplacez-vous-y
-
-> - Modèle
->
-> _(<project_name> : à remplacer par le nom du projet, dans notre cas "resistanceproject", qui n'est pas forcément un bon choix de nom)_
->
-> ```
-> django-admin startproject <project_name>
-> cd <project_name>
-> ```
-
-```
-django-admin startproject resistanceproject
-cd resistanceproject
-```
-
-6. Créer votre première app et démarrez les migrations de base
-
-Ici le nom des apps et des projets ont été choisi pour être correspondre au workshop, mais vous pouvez nommer votre projet et vos apps en fonction de votre projet évidemment.
-
-> - Modèle
->
-> (<app_name> : à remplacer par le nom de l'app et postfixer avec "app", dans notre cas <app_name> = "resistance" et avec le postfixe cela donne donc : "resistanceapp". Ce n'est pas forcément un bon choix de nom, essayez d'être plus précis dans le choix de vos noms, éviter les noms trop générique)\*
->
-> ```
-> # Windows
-> python manage.py startapp <app_name>app
-> python manage.py migrate
-> ```
-
-```
-# Windows
-python manage.py startapp resistanceapp
-python manage.py migrate
-```
-
-```
-# Linux
-python3 manage.py startapp resistanceapp
-python3 manage.py migrate
-```
+Pour créer un projet avec Django REST Framework c'est ici : https://www.django-rest-framework.org/tutorial/quickstart/
 
 ---
 
-# Q&A
+# (TODO) Q&A
 
 ## Séparer le fichiers views.py pour plus de clarté
 
