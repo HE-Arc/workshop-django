@@ -72,6 +72,24 @@ git checkout start
 
 ## 2. Créer un environnement virtuel, c'est très important... vraiment !
 
+**Commandes**
+
+Créer un nouvel env virtuel
+
+```
+python -m venv .venv
+```
+
+Activer l'env virtuel
+
+```
+source .venv/Scripts/activate
+# Or
+. .venv/Scripts/activate
+```
+
+> Si la commande ne fonctionne pas, c'est peut être un problème de permission, essayez d'exécuter en mode admin.
+
 **Détails et explications**
 
 > Virtual environment en anglais, souvent abbrégé venv
@@ -93,25 +111,13 @@ Vous devez le créer une fois au début et/ou à chaque fois que vous clonez le 
 **IMPORTANT** : les dossiers et fichiers de l'environnement virtuel ne doivent JAMAIS être push !  
 **IMPORTANT 2** : l'environnement virtuel peut être construit de manière légèrement différente en fonction de l'OS, de l'environnement virtuel utilisé, ou pour d'autre raisons. Contrôlez l'architecture des dossiers de votre venv si vous avez des soucis à exécuter l'une ou l'autre des commandes suivantes et adaptez les commandes suivantes en fonction.
 
+## 3. Installer les dépendances dans le venv
+
 **Commandes**
 
-Créer un nouvel env virtuel
-
 ```
-python -m venv .venv
+pip install -r requirements.txt
 ```
-
-Activer l'env virtuel
-
-```
-source .venv/Scripts/activate
-# Or
-. .venv/Scripts/activate
-```
-
-> Si la commande ne fonctionne pas, c'est peut être un problème de permission, essayez d'exécuter en mode admin.
-
-## 3. Installer les dépendances dans le venv.
 
 **Détails et explications**
 
@@ -121,21 +127,17 @@ Dans ce workshop et dans le projet que vous réaliserez lors de ce cours (projet
 
 Mais si vous souhaitez creuser un peu, des techniques plus avancées existent et vous pouvez checker pipenv (https://pipenv-fork.readthedocs.io/en/latest/basics.html) ou encore poetry qui est encore plus avancé (https://python-poetry.org/)
 
-**Commandes**
-
-```
-pip install -r requirements.txt
-```
-
 ## 4. Démarrer le serveur de dev
 
-Il est possible de structurer son projet différemment, la structure que nous allons utilisez est celle proposée dans Django par défaut. Une fois que vous aurez compris et que vous serez à l'aise n'hésitez pas à chercher comment l'améliorer et l'adapter au mieux pour votre projet.
+**Commandes**
 
 ```
 python manage.py runserver
 ```
 
-TODO: Si vous voyez une image d'espace en atteignant `localhost:8000`... C'est que c'est tout bon !
+**Détails et explications**
+
+Il est possible de structurer son projet différemment, la structure que nous allons utilisez est celle proposée sur le site de la bibliothèque Django REST Framework. Une fois que vous aurez compris et que vous serez à l'aise n'hésitez pas à chercher comment l'améliorer et l'adapter au mieux pour votre projet.
 
 ## 5. Extensions VSCode
 
@@ -143,11 +145,15 @@ Si vous utilisez Visual Studio Code, je vous recommande fortement d'installer et
 
 Cela n'est pas obligatoire pour le workshop et vous êtes également libre d'installer ou de désinstaller des extensions proposées dans ce pack.
 
+## 6. Prêt pour le workshop ?
+
+TODO: Si vous voyez une image d'espace en atteignant `localhost:8000`... C'est que c'est tout bon !
+
 ---
 
 **Prêt pour le workshop !**
 
-Si vous êtes arrivés jusqu'ici, vous êtes prêt pour le workshop.  
+Si vous êtes arrivés jusqu'ici sans problème, vous êtes prêt pour le workshop.  
 La suite vous sera utile lorsque vous devrez créer votre propre projet pour le semestre.
 
 ---
