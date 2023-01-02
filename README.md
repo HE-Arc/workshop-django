@@ -70,9 +70,11 @@ cd workshop-django
 git checkout start
 ```
 
-## 2. Créer un environnement virtuel (= virtual environment = venv), c'est très important !
+## 2. Créer un environnement virtuel, c'est très important... vraiment !
 
 **Détails et explications**
+
+> Virtual environment en anglais, souvent abbrégé venv
 
 Le gestionnaire de paquet en Python s'appelle pip. La technique de base consiste à créer un fichier nommé requirement.txt dans lequel nous allons pouvoir lister toutes les bibliothèques (dépendances) dont notre projet a besoin pour fonctionner correctement.
 
