@@ -59,7 +59,7 @@ python -m pip install --upgrade pip
 
 Vous trouverez ci-dessous les quelques commandes qui vous permettront de commencer à travailler sur le workshop.
 
-1. Cloner le répo Github du workshop, vous connaissez c'est easy ;)
+## 1. Cloner le répo Github du workshop, vous connaissez c'est easy ;)
 
 > SSH recommandé
 
@@ -70,7 +70,7 @@ cd workshop-django
 git checkout start
 ```
 
-2. Créer un environnement virtuel (= virtual environment = venv), c'est très important !
+## 2. Créer un environnement virtuel (= virtual environment = venv), c'est très important !
 
 **Détails et explications**
 
@@ -109,7 +109,7 @@ source .venv/Scripts/activate
 
 > Si la commande ne fonctionne pas, c'est peut être un problème de permission, essayez d'exécuter en mode admin.
 
-3. Installer les dépendances dans le venv.
+## 3. Installer les dépendances dans le venv.
 
 **Détails et explications**
 
@@ -125,7 +125,7 @@ Mais si vous souhaitez creuser un peu, des techniques plus avancées existent et
 pip install -r requirements.txt
 ```
 
-4. Démarrer le serveur de dev
+## 4. Démarrer le serveur de dev
 
 Il est possible de structurer son projet différemment, la structure que nous allons utilisez est celle proposée dans Django par défaut. Une fois que vous aurez compris et que vous serez à l'aise n'hésitez pas à chercher comment l'améliorer et l'adapter au mieux pour votre projet.
 
