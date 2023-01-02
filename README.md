@@ -137,6 +137,12 @@ python manage.py runserver
 
 TODO: Si vous voyez une image d'espace en atteignant `localhost:8000`... C'est que c'est tout bon !
 
+## 5. Extensions VSCode
+
+Si vous utilisez Visual Studio Code, je vous recommande fortement d'installer et d'utiliser le pack d'extensions `Python Extension Pack`.
+
+Cela n'est pas obligatoire pour le workshop et vous êtes également libre d'installer ou de désinstaller des extensions proposées dans ce pack.
+
 ---
 
 **Prêt pour le workshop !**
