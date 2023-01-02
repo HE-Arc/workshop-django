@@ -115,6 +115,8 @@ Vous devez le créer une fois au début et/ou à chaque fois que vous clonez le 
 
 **Commandes**
 
+> **IMPORTANT** Assurez-vous d'être dans le venv avant de lancer les commandes suivantes !
+
 ```
 pip install -r requirements.txt
 ```
@@ -127,7 +129,19 @@ Dans ce workshop et dans le projet que vous réaliserez lors de ce cours (projet
 
 Mais si vous souhaitez creuser un peu, des techniques plus avancées existent et vous pouvez checker pipenv (https://pipenv-fork.readthedocs.io/en/latest/basics.html) ou encore poetry qui est encore plus avancé (https://python-poetry.org/)
 
-## 4. Démarrer le serveur de dev
+## 4. Migrer et créer un utilisateur admin
+
+```
+python manage.py migrate
+```
+
+Créer un nouvel utilisateur admin et donnez-lui un mot de passe dont vous pourrez vous rappeler.
+
+```
+python manage.py createsuperuser --email admin@example.com --username admin
+```
+
+## 5. Démarrer le serveur de dev
 
 **Commandes**
 
@@ -139,13 +153,13 @@ python manage.py runserver
 
 Il est possible de structurer son projet différemment, la structure que nous allons utilisez est celle proposée sur le site de la bibliothèque Django REST Framework. Une fois que vous aurez compris et que vous serez à l'aise n'hésitez pas à chercher comment l'améliorer et l'adapter au mieux pour votre projet.
 
-## 5. Extensions VSCode
+## 6. Extensions VSCode
 
 Si vous utilisez Visual Studio Code, je vous recommande fortement d'installer et d'utiliser le pack d'extensions `Python Extension Pack`.
 
 Cela n'est pas obligatoire pour le workshop et vous êtes également libre d'installer ou de désinstaller des extensions proposées dans ce pack.
 
-## 6. Prêt pour le workshop ?
+## 7. Prêt pour le workshop ?
 
 TODO: Si vous voyez une image d'espace en atteignant `localhost:8000`... C'est que c'est tout bon !
 
