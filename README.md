@@ -184,41 +184,22 @@ Les réponses se trouvent dans le README sur la branche `start` mais **c'est de 
 
 # Initialiser un nouveau projet Django de zéro
 
-Durant le workshop nous sommes parties d'un projet déjà existant, en réalité c'est juste pour nous faire gagner un peu de temps, mais c'est extrêmement simple à reproduire.
+Durant le workshop nous avons démarrés d'un projet existant, en réalité c'est juste pour nous faire gagner un peu de temps, mais c'est extrêmement simple à reproduire.
 
-Pour créer un projet avec Django REST Framework c'est ici : https://www.django-rest-framework.org/tutorial/quickstart/
+Ce tutoriel est à suivre du début jusqu'au chapitre "Write your first view" non compris : https://docs.djangoproject.com/en/4.1/intro/tutorial01/
 
 ---
 
-# (TODO) Q&A
+# Tips
 
-## Séparer le fichiers views.py pour plus de clarté
+## Supprimer toutes les bibliothèques d'un environnement
 
-**Q: @PedroEmanuelCosta**
+```
+pip freeze | xargs pip uninstall -y
+```
 
-Est-ce qu’en suite dans le fichier views.py on regroupe tous les contrôleurs de ces modèles ou il est plutôt recommandé de faire plusieurs fichiers séparés plutôt du style à la Laravel ?
+https://stackoverflow.com/questions/11248073/what-is-the-easiest-way-to-remove-all-packages-installed-by-pip
 
-**A: @Ishydo**
+# Erreurs courantes
 
-Si votre projet web de deuxième semestre est qualifiable d'ambitieux (plus de 3 ou 4 modèles), vous risquez effectivement de vous retrouver avec un fichier views.py d'une longueur désagréable. Il est donc intéressant de diviser ce fichier en plusieurs sous fichiers pour répartir la logique en fonction de vos modèles.
-
-Et vous le savez :
-
-    Diviser (views.py) pour mieux régner.
-
-Plus globalement, l'arborescence d'un fresh django project est pas top top. Il existe, par exemple, un truc appelé cookiecutter qui permet d'avoir un django plus facile à déployer par la suite.
-
---> https://cookiecutter-django.readthedocs.io/en/latest/
-
-Pour plus d'infos, demander à Julien ou Yoan, moi je ne l'ai jamais utilisé
-
-Mais en gros, voici la recette :
-
-- Créez un dossier views et supprimer le fichier views.py
-- Ajoutez un fichier **init**.py pour faire du dossier un "package" python utilisable
-- Créez vos X fichiers views en fonction des X modèles (task_views.py, step_views.py, etc)
-  - Comme ici https://github.com/Ishydo/snapventure/tree/master/snapventure-backend/snapventure/views
-- Dans les routes, ne pas oublier de faire appel aux fichiers qui sont désormais dans le package views et non plus au fichiers views.py (qui n'existe plus) !
-  - Comme ici : https://github.com/Ishydo/snapventure/blob/master/snapventure-backend/snapventure/urls.py
-
-Codez vos views dans le bonheur et la clarté d'un code aéré 😍
+...
