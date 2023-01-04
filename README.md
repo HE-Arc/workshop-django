@@ -151,7 +151,7 @@ python manage.py runserver
 
 **Détails et explications**
 
-Il est possible de structurer son projet différemment, la structure que nous allons utilisez est celle proposée sur le site de la bibliothèque Django REST Framework. Une fois que vous aurez compris et que vous serez à l'aise n'hésitez pas à chercher comment l'améliorer et l'adapter au mieux pour votre projet.
+Il est possible de structurer son projet différemment, la structure que nous allons utilisez est basé sur celle proposée par le site de la bibliothèque Django REST Framework. Une fois que vous aurez compris et que vous serez à l'aise n'hésitez pas à chercher comment l'améliorer et l'adapter au mieux pour votre projet.
 
 ## 6. Extensions VSCode
 
@@ -186,7 +186,7 @@ Les réponses se trouvent dans le README sur la branche `start` mais **c'est de 
 
 Durant le workshop nous avons démarrés d'un projet existant, en réalité c'est juste pour nous faire gagner un peu de temps, mais c'est extrêmement simple à reproduire.
 
-Ce tutoriel est à suivre du début jusqu'au chapitre "Write your first view" non compris : https://docs.djangoproject.com/en/4.1/intro/tutorial01/
+Ce tuto vous aidera à réaliser les premières étapes, vous pouvez également trouver et utiliser d'autres tutoriels : https://www.django-rest-framework.org/tutorial/quickstart/
 
 ---
 
