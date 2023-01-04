@@ -186,7 +186,7 @@ Les réponses se trouvent dans le README sur la branche `start` mais **c'est de 
 
 Durant le workshop nous avons démarrés d'un projet existant, en réalité c'est juste pour nous faire gagner un peu de temps, mais c'est extrêmement simple à reproduire.
 
-Ce tuto vous aidera à réaliser les premières étapes, vous pouvez également trouver et utiliser d'autres tutoriels : https://www.django-rest-framework.org/tutorial/quickstart/
+Le chapitre "setup project" de ce tuto permettent de réaliser les premières étapes du workshop (les chapitres suivants ont été vu ensemble durant le workshop) : https://www.django-rest-framework.org/tutorial/quickstart/
 
 ---
 
@@ -199,6 +199,12 @@ pip freeze | xargs pip uninstall -y
 ```
 
 https://stackoverflow.com/questions/11248073/what-is-the-easiest-way-to-remove-all-packages-installed-by-pip
+
+## Installer un formatter pour Python
+
+Il en existe plusieurs, voici celui que j'utilise :
+
+https://dev.to/adamlombard/how-to-use-the-black-python-code-formatter-in-vscode-3lo0
 
 # Erreurs courantes
 
