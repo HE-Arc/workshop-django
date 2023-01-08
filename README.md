@@ -208,6 +208,10 @@ Il en existe plusieurs, voici celui que j'utilise :
 
 https://dev.to/adamlombard/how-to-use-the-black-python-code-formatter-in-vscode-3lo0
 
+## Rollback une ou plusieurs migrations
+
+https://stackoverflow.com/questions/32123477/how-to-revert-the-last-migration
+
 # Erreurs courantes
 
 ...
