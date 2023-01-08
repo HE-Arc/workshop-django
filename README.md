@@ -153,13 +153,7 @@ python manage.py runserver
 
 Il est possible de structurer son projet différemment, la structure que nous allons utilisez est basé sur celle proposée par le site de la bibliothèque Django REST Framework. Une fois que vous aurez compris et que vous serez à l'aise n'hésitez pas à chercher comment l'améliorer et l'adapter au mieux pour votre projet.
 
-## 6. Extensions VSCode
-
-Si vous utilisez Visual Studio Code, je vous recommande fortement d'installer et d'utiliser le pack d'extensions `Python Extension Pack`.
-
-Cela n'est pas obligatoire pour le workshop et vous êtes également libre d'installer ou de désinstaller des extensions proposées dans ce pack.
-
-## 7. Prêt pour le workshop ?
+## 6. Prêt pour le workshop ?
 
 TODO: Si vous voyez une image d'espace en atteignant `localhost:8000`... C'est que c'est tout bon !
 
@@ -191,6 +185,14 @@ Le chapitre "setup project" de ce tuto permettent de réaliser les premières é
 ---
 
 # Tips
+
+## Installer des extensions VSCode pour aider au développement
+
+Si vous utilisez Visual Studio Code, je vous recommande fortement d'installer et d'utiliser le pack d'extensions `Python Extension Pack`.  
+Cela n'est pas obligatoire pour le workshop et vous êtes également libre d'installer ou de désinstaller des extensions proposées dans ce pack.
+
+Il est également possible d'activer l'importation automatique dans les paramètres de Pylance :
+https://code.visualstudio.com/docs/python/editing#_enable-auto-imports
 
 ## Supprimer toutes les bibliothèques d'un environnement
 
