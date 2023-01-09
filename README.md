@@ -223,11 +223,17 @@ Le chapitre "setup project" de ce tuto permettent de réaliser les premières é
 
 ## Installer des extensions VSCode pour aider au développement
 
-Si vous utilisez Visual Studio Code, je vous recommande fortement d'installer et d'utiliser le pack d'extensions `Python Extension Pack`.  
-Cela n'est pas obligatoire pour le workshop et vous êtes également libre d'installer ou de désinstaller des extensions proposées dans ce pack.
+Si vous utilisez Visual Studio Code, je vous recommande fortement d'installer et d'utiliser les pack d'extensions suivants.
 
-Il est également possible d'activer l'importation automatique dans les paramètres de Pylance :
-https://code.visualstudio.com/docs/python/editing#_enable-auto-imports
+- `Python Extension Pack` : Django
+- `Vue Volar extension Pack` : Vue.js
+
+Ces extensions VSCode facilite grandement le développement ! Je ne peux que vous recommandé très très fortement de les installer et de les utiliser. Certaines sont plus utiles que d'autres.  
+Même si cela est recommandé, il n'est pas obligatoire de les installer, vous êtes également libre de sélectionner dans ces packs, les extensions que que vous souhaitez utiliser.
+
+Ces extensions sont pour la pluspart configurable, voici quelques configurations que je vous recommande d'ajouter.
+
+Pour Django, il est également possible d'activer l'importation automatique dans les paramètres de Pylance https://code.visualstudio.com/docs/python/editing#_enable-auto-imports
 
 ## Supprimer toutes les bibliothèques d'un environnement
 
