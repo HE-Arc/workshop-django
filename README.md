@@ -21,27 +21,38 @@ Branches par années
 
 # Prérequis
 
-Dans ce workshop nous utiliserons la version 4.1.4 de Django, pour ce faire, il faut avoir installé certaines choses, en voici la liste et les explications.
+Dans ce workshop nous utiliserons la version 4.1.5 de Django et la version 3.2.45 de Vue.js.
+
+La première étape est d'installer les différents prérequis listés ci-dessous.
+
+## IMPORTANT si vous travaillez sur linux
+
+Vous concerne si vous utilisez Linux :
+
+Sur Linux toutes les commandes python doivent commencée par `python3`, donc `python --version` sur Windows, devra s'écrire `python3 --version` sur Linux.
+
+Les commande pip doivent également commencée par `pip3`, donc `pip --version` sur Windows, devra s'écrire `pip3 --version` sur Linux.
+
+C'est une source d'erreur très fréquente, il faut s'y faire au début, cela devient un automatisme par la suite...
 
 ## Python
 
 Pour le workshop vous aurez besoin de la version de Python >= 3.8
 
+https://www.python.org/downloads/
+
 > Le workshop a été testé avec la version 3.11.1 de Python
 
-> Dépendance provenant du site officiel de Django pour la version utilisé dans ce workshop : https://docs.djangoproject.com/en/4.1/faq/install/#faq-python-version-support  
-> Documentation Django officielle pour la version utilisée de Django : https://docs.djangoproject.com/en/4.1/
+> Dépendance provenant du site officiel de Django pour la version utilisé dans ce workshop https://docs.djangoproject.com/en/4.1/faq/install/#faq-python-version-support  
+> Documentation Django officielle pour la version utilisée de Django https://docs.djangoproject.com/en/4.1/
 
 ```
 python --version
 ```
 
-**IMPORTANT** Vous concerne si vous utilisez Linux :  
-Sur Linux toutes les commandes python doivent commencée par `python3`, donc `python --version` sur Windows, devra s'écrire `python3 --version` sur Linux.  
-Les commande pip doivent également commencée par `pip3`, donc `pip --version` sur Windows, devra s'écrire `pip3 --version` sur Linux.  
-C'est une source d'erreur très fréquente, il faut s'y faire au début, cela devient un automatisme par la suite...
-
 ## pip
+
+pip est le "package manager" qui vient par défaut avec Python, assurez-vous simplement d'avoir une version compatible.
 
 > Le workshop a été testé avec la version 22.3.1 de pip
 
@@ -49,10 +60,34 @@ C'est une source d'erreur très fréquente, il faut s'y faire au début, cela de
 pip --version
 ```
 
-pip peut être mit à niveau avec :
+Si nécessaire, pip peut être mit à niveau avec la commande suivante.
 
 ```
 python -m pip install --upgrade pip
+```
+
+## Nodejs
+
+Pour le workshop vous aurez besoin de la version de Node.js >= 16.0
+
+https://nodejs.org/en/
+
+> Le workshop a été testé avec la version 18.13.0 de Node.js
+
+> Dépendant provenant du site officiel de Vue.js https://vuejs.org/guide/quick-start.html
+
+```
+node --version
+```
+
+## npm
+
+npm est le "package manager" qui vient par défaut avec Node.js, assurez-vous simplement d'avoir une version compatible.
+
+> Le workshop a été testé avec la version 8.19.3 de npm
+
+```
+npm --version
 ```
 
 # Installation et configuration
