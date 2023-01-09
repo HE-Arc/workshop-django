@@ -202,6 +202,16 @@ pip freeze | xargs pip uninstall -y
 
 https://stackoverflow.com/questions/11248073/what-is-the-easiest-way-to-remove-all-packages-installed-by-pip
 
+## Supprimer une bibliothèque et toutes ces dépendances en utilisant pipenv
+
+```
+pipenv uninstall package && pipenv clean
+```
+
+> Replace "package" by the name of the package you're interested in
+
+https://stackoverflow.com/questions/62632664/how-to-autoremove-dependent-python-packages-within-a-pipenv-when-uninstalling-a
+
 ## Lister toutes les versions d'une bibliothèque Python disponible avec pip
 
 ```
