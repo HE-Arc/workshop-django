@@ -205,9 +205,10 @@ https://stackoverflow.com/questions/11248073/what-is-the-easiest-way-to-remove-a
 ## Lister toutes les versions d'une bibliothèque Python disponible avec pip
 
 ```
-# Replace "package" by the name of the package you're interested in
 pip index versions package
 ```
+
+> Replace "package" by the name of the package you're interested in
 
 https://stackoverflow.com/questions/4888027/python-and-pip-list-all-versions-of-a-package-thats-available
 
