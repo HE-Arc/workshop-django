@@ -202,6 +202,15 @@ pip freeze | xargs pip uninstall -y
 
 https://stackoverflow.com/questions/11248073/what-is-the-easiest-way-to-remove-all-packages-installed-by-pip
 
+## Lister toutes les versions d'une bibliothèque Python disponible avec pip
+
+```
+# Replace "package" by the name of the package you're interested in
+pip index versions package
+```
+
+https://stackoverflow.com/questions/4888027/python-and-pip-list-all-versions-of-a-package-thats-available
+
 ## Installer un formatter pour Python
 
 Il en existe plusieurs, voici celui que j'utilise :
