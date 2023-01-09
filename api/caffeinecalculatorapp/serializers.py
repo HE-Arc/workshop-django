@@ -90,6 +90,7 @@ class ConsumedItemSerializer(serializers.HyperlinkedModelSerializer):
     # NOTE:
     # user = serializers.ReadOnlyField(source="user.username")
     user = UserSerializer(read_only=True)
+    caffeine_item_obj = CaffeineItemSerializer(source="caffeine_item", read_only=True)
 
     class Meta:
         model = ConsumedItem
@@ -98,5 +99,7 @@ class ConsumedItemSerializer(serializers.HyperlinkedModelSerializer):
             "id",
             "user",
             "caffeine_item",
+            "caffeine_item_obj",
             "consumed_number",
+            "created",
         ]

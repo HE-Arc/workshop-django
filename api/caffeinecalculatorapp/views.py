@@ -213,7 +213,7 @@ class ConsumedItemViewSet(viewsets.ModelViewSet):
     # NOTE: Overrides the perform_create function comming from mixins.CreateModelMixin
     # which generics.ListCreateAPIView inherits
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.save(user=self.request.user)
 
 
 class CaffeineItemViewSet(viewsets.ModelViewSet):
