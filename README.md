@@ -166,7 +166,7 @@ Vous devez le créer une fois au début et/ou à chaque fois que vous clonez le 
 
 **Commandes**
 
-Migrer
+Migrez
 
 ```
 python manage.py migrate
@@ -177,6 +177,10 @@ Créez un nouvel utilisateur admin et donnez-lui un mot de passe dont vous pourr
 ```
 python manage.py createsuperuser --email admin@example.com --username admin
 ```
+
+> Si vous êtes sur Windows et que vous avez des erreurs avec ces commandes, vous pouvez essayer de préfixé les commandes python par `winpty`  
+> Exemple : `winpty python manage.py migrate`  
+> https://stackoverflow.com/questions/32532900/not-able-to-create-super-user-with-django-manage-py
 
 ## 4. Démarrer le serveur de dev
 
@@ -192,15 +196,18 @@ En allant à l'URL proposée dans la console, après avoir démarré le serveur 
 
 S’il n'y a pas d'erreur et que vous arrivez sur une interface sur laquelle il est écrit "Django Administration", c'est tout bon et vous pouvez passer à la suite.
 
-## 6. Installer les dépendances Vue.js
+## 6. Installer les dépendances de l'app Vue.js
 
 **Commandes**
 
+Dans un nouveau bash exécutez
+
 ```
+cp frontend
 npm install
 ```
 
-## 7. Démarrer le serveur de dev
+## 7. Démarrer le serveur de dev de l'app Vue.js
 
 **Commandes**
 
@@ -210,6 +217,15 @@ npm run dev
 
 
 ## 8. Tester l'app Vue.js
+
+**Prérequis**
+
+Vous devriez maintenant avoir 2 bash ouvert, le premier bash avec le serveur Django et l'autre bash avec le serveur Vue.js.  
+Si ce n'est pas le cas, assurez-vous d'avoir les 2 serveurs allumés avant de continuer.
+
+Une fois les 2 serveurs allumés...
+
+**Test**
 
 En allant à l'URL proposée dans la console, après avoir démarré le serveur de dev, vous devriez voir une application avec du texte et un GIF.
 
