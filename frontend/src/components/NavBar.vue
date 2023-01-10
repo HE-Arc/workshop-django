@@ -8,9 +8,9 @@
     </q-toolbar>
 
     <q-tabs align="left">
-      <q-route-tab :to="{ name: 'home' }" label="Home" />
-      <q-route-tab :to="{ name: 'consumedItems' }" label="Consumed items" />
-      <q-route-tab :to="{ name: 'caffeineItems' }" label="Caffeine items" />
+      <q-route-tab label="Home" />
+      <q-route-tab label="Consumed items" />
+      <q-route-tab label="Caffeine items" />
     </q-tabs>
   </q-header>
 </template>

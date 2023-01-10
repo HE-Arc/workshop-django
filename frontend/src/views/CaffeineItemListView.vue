@@ -1,3 +1,7 @@
 <script setup></script>
 
-<template><h1>Caffeine items</h1></template>
+<template>
+  <q-page padding>
+    <h1>Caffeine items</h1>
+  </q-page>
+</template>
