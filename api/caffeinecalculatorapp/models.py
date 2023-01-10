@@ -22,5 +22,6 @@ class ConsumedItem(models.Model):
         null=True,
     )
     consumed_number = models.PositiveIntegerField()
+    consumption_date = models.DateTimeField()
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)

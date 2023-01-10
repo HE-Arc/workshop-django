@@ -99,7 +99,7 @@ class ConsumedItemSerializer(serializers.HyperlinkedModelSerializer):
             "user",
             "caffeine_item",
             "consumed_number",
-            "created",
+            "consumption_date",
         ]
 
 

@@ -1,8 +1,9 @@
 <script setup>
 import axios from "axios";
 import { ref, onMounted } from "vue";
+import ErrorBanner from "../components/ErrorBanner.vue";
 
-const errors = ref({});
+const errors = ref(null);
 
 const caffeineItems = ref([]);
 
@@ -23,10 +24,13 @@ const fetchCaffeineItems = async () => {
 
 const submit = async (caffeine_item) => {
   try {
+    errors.value = null;
+
     const res = await axios.post("http://127.0.0.1:8000/api/consumed-items/", {
       user: user.value?.url,
       caffeine_item: caffeine_item.url,
       consumed_number: 1,
+      consumption_date: new Date(),
     });
 
     console.log(res);
@@ -43,17 +47,29 @@ onMounted(() => {
 </script>
 
 <template>
-  {{ errors }}
   <q-page padding>
+    <ErrorBanner :errors="errors" />
+
     <q-select
       v-model="user"
-      class="q-mb-lg"
       option-value="id"
       option-label="username"
       :options="users"
       label="User"
       outlined
     />
+
+    <div class="text-left q-my-md">
+      <q-btn
+        color="primary"
+        :to="{
+          name: 'beverages.create',
+        }"
+      >
+        <q-icon left size="3em" name="mdi-plus-box" />
+        <div>Create a new beverage</div>
+      </q-btn>
+    </div>
 
     <div class="row">
       <div
@@ -90,12 +106,24 @@ onMounted(() => {
               color="primary"
               dense
             >
-              <q-icon left size="3em" name="mdi-numeric-positive-1" />
+              <q-icon left size="xl" name="mdi-numeric-positive-1" />
               <div>I drank this one today</div>
             </q-btn>
           </q-card-actions>
         </q-card>
       </div>
+    </div>
+
+    <div class="text-right q-my-md">
+      <!-- NOTE: What's "_blank"? source https://www.freecodecamp.org/news/how-to-use-html-to-open-link-in-new-tab/ -->
+      <q-btn
+        color="grey-9"
+        target="_blank"
+        href="https://www.caffeineinformer.com/the-caffeine-database"
+      >
+        The values are comming from: caffeineinformer.com
+        <q-icon right size="xs" name="mdi-arrow-top-right-bold-box-outline" />
+      </q-btn>
     </div>
   </q-page>
 </template>

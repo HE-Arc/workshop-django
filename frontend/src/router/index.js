@@ -10,22 +10,22 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/consumed-items",
-      name: "consumedItems",
+      path: "/details-and-stats",
+      name: "detailsAndStats",
       // route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/ConsumedItemListView.vue"),
+      component: () => import("../views/DetailsAndStatsView.vue"),
     },
     {
-      path: "/consumed-items/create",
-      name: "consumedItems.create",
-      component: () => import("../views/ConsumedItemCreateView.vue"),
+      path: "/beverages",
+      name: "beverages",
+      component: () => import("../views/BeverageView.vue"),
     },
     {
-      path: "/caffeine-items",
-      name: "caffeineItems",
-      component: () => import("../views/CaffeineItemListView.vue"),
+      path: "/beverages/create",
+      name: "beverages.create",
+      component: () => import("../views/CreateBeverageView.vue"),
     },
   ],
 });
