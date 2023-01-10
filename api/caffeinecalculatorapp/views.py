@@ -1,4 +1,5 @@
 from functools import partial
+
 from django.contrib.auth.models import User
 from django.http import Http404
 from rest_framework import generics, mixins, status, viewsets
@@ -11,6 +12,7 @@ from rest_framework.views import APIView
 from .models import CaffeineItem, ConsumedItem
 from .serializers import (
     CaffeineItemSerializer,
+    ComplexeConsumedItemSerializer,
     ComplexeUserSerializer,
     ConsumedItemSerializer,
     UserSerializer,
@@ -185,12 +187,12 @@ def api_root(request, format=None):
 # NOTE: ViewSets instead of views
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
-    serializer_class = UserSerializer
+    serializer_class = ComplexeUserSerializer
 
 
 class ConsumedItemViewSet(viewsets.ModelViewSet):
     queryset = ConsumedItem.objects.all()
-    serializer_class = ConsumedItemSerializer
+    serializer_class = ComplexeConsumedItemSerializer
 
     @action(
         detail=True, methods=["POST"], url_path="increase-first-caffeine-item-by-one"
@@ -213,7 +215,10 @@ class ConsumedItemViewSet(viewsets.ModelViewSet):
     # NOTE: Overrides the perform_create function comming from mixins.CreateModelMixin
     # which generics.ListCreateAPIView inherits
     def perform_create(self, serializer):
-        serializer.save(user=self.request.user)
+        if self.request.user.is_authenticated:
+            serializer.save(user=self.request.user)
+        else:
+            serializer.save()
 
 
 class CaffeineItemViewSet(viewsets.ModelViewSet):

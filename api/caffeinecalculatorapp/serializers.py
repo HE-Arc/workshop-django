@@ -78,6 +78,7 @@ class ComplexeUserSerializer(UserSerializer):
     consumed_items = serializers.HyperlinkedRelatedField(
         many=True, view_name="consumeditem-detail", read_only=True
     )
+    # consume_items =
 
     class Meta:
         model = User
@@ -87,10 +88,8 @@ class ComplexeUserSerializer(UserSerializer):
 
 
 class ConsumedItemSerializer(serializers.HyperlinkedModelSerializer):
-    # NOTE:
+    # NOTE: it's possible to display anything else, here we display the username instead of the ID
     # user = serializers.ReadOnlyField(source="user.username")
-    user = UserSerializer(read_only=True)
-    caffeine_item_obj = CaffeineItemSerializer(source="caffeine_item", read_only=True)
 
     class Meta:
         model = ConsumedItem
@@ -99,7 +98,18 @@ class ConsumedItemSerializer(serializers.HyperlinkedModelSerializer):
             "id",
             "user",
             "caffeine_item",
-            "caffeine_item_obj",
             "consumed_number",
             "created",
+        ]
+
+
+class ComplexeConsumedItemSerializer(ConsumedItemSerializer):
+    user_obj = UserSerializer(source="user", read_only=True)
+    caffeine_item_obj = CaffeineItemSerializer(source="caffeine_item", read_only=True)
+
+    class Meta:
+        model = ConsumedItem
+        fields = ConsumedItemSerializer.Meta.fields + [
+            "user_obj",
+            "caffeine_item_obj",
         ]
