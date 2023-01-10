@@ -14,7 +14,7 @@ Branches générales
 - start : la branche contenant le code de départ du workshop Django
 - end : la branche contenant le code solution du workshop Django
 
-Branches par années
+Branches par année
 
 - xxxx-start : la branche contenant le code de départ du workshop Django, réalisé avec les étudiants de l'année xxxx
 - xxxx-end : la branche contenant le code solution du workshop Django, réalisé avec les étudiants de l'année xxxx
@@ -29,7 +29,7 @@ La première étape est d'installer les différents prérequis listés ci-dessou
 
 Vous concerne si vous utilisez Linux :
 
-Sur Linux toutes les commandes python doivent commencée par `python3`, donc `python --version` sur Windows, devra s'écrire `python3 --version` sur Linux.
+Sur Linux toutes les commandes python doivent commencer par `python3`, donc `python --version` sur Windows, devra s'écrire `python3 --version` sur Linux.
 
 Les commande pip doivent également commencée par `pip3`, donc `pip --version` sur Windows, devra s'écrire `pip3 --version` sur Linux.
 
@@ -43,7 +43,7 @@ https://www.python.org/downloads/
 
 > Le workshop a été testé avec la version 3.11.1 de Python
 
-> Dépendance provenant du site officiel de Django pour la version utilisé dans ce workshop https://docs.djangoproject.com/en/4.1/faq/install/#faq-python-version-support  
+> Dépendance provenant du site officiel de Django pour la version utilisée dans ce workshop https://docs.djangoproject.com/en/4.1/faq/install/#faq-python-version-support  
 > Documentation Django officielle pour la version utilisée de Django https://docs.djangoproject.com/en/4.1/
 
 ```
@@ -60,7 +60,7 @@ pip est le "package manager" qui vient par défaut avec Python, assurez-vous sim
 pip --version
 ```
 
-Si nécessaire, pip peut être mit à niveau avec la commande suivante.
+Si nécessaire, pip peut être mis à niveau avec la commande suivante.
 
 ```
 python -m pip install --upgrade pip
@@ -74,7 +74,7 @@ https://nodejs.org/en/
 
 > Le workshop a été testé avec la version 18.13.0 de Node.js
 
-> Dépendant provenant du site officiel de Vue.js https://vuejs.org/guide/quick-start.html
+> Dépendance provenant du site officiel de Vue.js https://vuejs.org/guide/quick-start.html
 
 ```
 node --version
@@ -96,87 +96,89 @@ Vous trouverez ci-dessous les quelques commandes qui vous permettront de commenc
 
 ## 1. Cloner le répo Github du workshop, vous connaissez c'est easy ;)
 
+**Commandes**
+
 > SSH recommandé
 
-(TODO): check les liens et commandes
 ```
-git clone git@github.com:HE-Arc/workshop-django.git
-cd workshop-django
-git checkout start
+git clone git@github.com:HE-Arc/workshop-django-2.0.git
+cd workshop-django-2.0
+git checkout check
 ```
 
-## 2. Créer un environnement virtuel, c'est très important... vraiment !
+## 2. Installer les dépendances de l'app Django dans un venv, c'est très important... vraiment !
 
 **Commandes**
 
-Créer un nouvel env virtuel
+Installer `pipenv` qui s'occupera de gérer nos bibliothèques Python via pip.
+
+> Testé avec la version `pipenv==2022.12.19`
 
 ```
-python -m venv .venv
+pip install pipenv
 ```
+
+Installer les bibliothèques du projet.
+
+```
+cd api
+pipenv install
+```
+
+> Cette commande crée un environnement virtuel et y installe toutes les bibliothèques nécessaires.
+
+> **ATTENTION** ! Pour installer une bibliothèque dans notre projet il faudra utiliser pipenv directement et non plus pip.  
+> ```
+> pipenv install package==x.y.z
+> ```
 
 Activer l'env virtuel
 
 ```
-source .venv/Scripts/activate
+source path_to_venv/Scripts/activate
 # Or
-. .venv/Scripts/activate
+. path_to_venv/Scripts/activate
 ```
 
 > Si la commande ne fonctionne pas, c'est peut être un problème de permission, essayez d'exécuter en mode admin.
 
 **Détails et explications**
 
-> Virtual environment en anglais, souvent abbrégé venv
+> Virtual environment en anglais, souvent abrégé venv
 
-Le gestionnaire de paquet en Python s'appelle pip. La technique de base consiste à créer un fichier nommé requirement.txt dans lequel nous allons pouvoir lister toutes les bibliothèques (dépendances) dont notre projet a besoin pour fonctionner correctement.
+Le gestionnaire de paquet en Python s'appelle pip. La technique de base consiste à créer un fichier nommé requirement.txt dans lequel nous allons pouvoir lister toutes les bibliothèques (dépendances) dont notre projet a besoin pour fonctionner correctement. Dans ce workshop nous utilisons une technique un peu plus avancée en utilisant pipenv qui permet d'organiser un peu mieux nos bibliothèques (un peu à l'image de composer ou de npm).
 
-Par défaut pip installe toutes les bibliothèques globalement sur l'ordinateur, ce qui pourrait paraitre comme une bonne idée à la base car si nous avons un autre projet qui nécessite toutes ou certaines mêmes bibliothèques, les bibliothèques en question seront déjà installées... MAIS...
+Par défaut pip installe toutes les bibliothèques globalement sur l'ordinateur, ce qui pourrait paraître comme une bonne idée à la base, car si nous avons un autre projet qui nécessite toutes ou certaines mêmes bibliothèques, les bibliothèques en question seront déjà installées... MAIS...
 
-Mais en réfléchissement un peu on s'aperçoit très vite que c'est une très mauvaise idée. Certaines bibliothèques pourraient ne pas être compatibles ce qui pourrait rapidement devenir difficile à gérer.
+Mais en réfléchissant un peu on s'aperçoit très vite que c'est une très mauvaise idée. Certaines bibliothèques pourraient ne pas être compatibles ce qui pourrait rapidement devenir difficile à gérer.
 
-Le mieux est donc de séparer toutes les bibliothèques de tous les projets quitte à devoir réinstaller dans certain cas la même version de certaines d'entre elles.
+Le mieux est donc de séparer toutes les bibliothèques de tous les projets quitte à devoir réinstaller dans certains cas la même version de certaines d'entre elles.
 
 Pour ce faire nous allons utiliser les environnements virtuels qui nous permettent d'isoler un environnement afin de le séparer de celui de base et des autres que nous allons créer pour d'autres projets.
 
-Il existe plusieurs bibliothèques qui permettent toutes de créer des environnements virtuels, vous pouvez utiliser celui que vous souhaitez. Personnellement j'utilise celui disponible directement avec Python.
+Il existe plusieurs bibliothèques qui permettent toutes de créer des environnements virtuels. Dans notre cas et comme nous utilisons pipenv, nous utiliserons celle proposée par défaut par pipenv.
 
-Vous devez le créer une fois au début et/ou à chaque fois que vous clonez le projet. Ensuite une fois qu'il est créé pour la première fois vous n'aurez plus qu'à l'activer. Attention il ne faut pas oublier de le réactiver. Vous pouvez checker que vous avez bien l'extension VSCode "Python" (sinon installez là, elle nous sera utile par la suite).
+Vous devez le créer une fois au début et/ou à chaque fois que vous clonez le projet. Ensuite une fois qu'il est créé pour la première fois vous n'aurez plus qu'à l'activer. Attention il ne faut pas oublier de le réactiver.
 
-**IMPORTANT** : les dossiers et fichiers de l'environnement virtuel ne doivent JAMAIS être push !  
-**IMPORTANT 2** : l'environnement virtuel peut être construit de manière légèrement différente en fonction de l'OS, de l'environnement virtuel utilisé, ou pour d'autre raisons. Contrôlez l'architecture des dossiers de votre venv si vous avez des soucis à exécuter l'une ou l'autre des commandes suivantes et adaptez les commandes suivantes en fonction.
+**IMPORTANT** : les dossiers et fichiers de l'environnement virtuel ne doivent JAMAIS être push (en utilisant pipenv, c'est le comportement par défaut, car les env virtuels ne sont pas créés dans le dossier du projet. En principe vous n'avez donc rien à faire) !  
 
-## 3. Installer les dépendances dans le venv
+## 3. Migrer et créer un utilisateur admin
 
 **Commandes**
 
-> **IMPORTANT** Assurez-vous d'être dans le venv avant de lancer les commandes suivantes !
-
-```
-pip install -r requirements.txt
-```
-
-**Détails et explications**
-
-Il existe des débats sur le net au sujet d'une meilleure utilisation de ce fichier.
-
-Dans ce workshop et dans le projet que vous réaliserez lors de ce cours (projet de petite taille), le fichier requirements.txt est tout à fait adapté.
-
-Mais si vous souhaitez creuser un peu, des techniques plus avancées existent et vous pouvez checker pipenv (https://pipenv-fork.readthedocs.io/en/latest/basics.html) ou encore poetry qui est encore plus avancé (https://python-poetry.org/)
-
-## 4. Migrer et créer un utilisateur admin
+Migrer
 
 ```
 python manage.py migrate
 ```
 
-Créer un nouvel utilisateur admin et donnez-lui un mot de passe dont vous pourrez vous rappeler.
+Créez un nouvel utilisateur admin et donnez-lui un mot de passe dont vous pourrez vous rappeler.
 
 ```
 python manage.py createsuperuser --email admin@example.com --username admin
 ```
 
-## 5. Démarrer le serveur de dev
+## 4. Démarrer le serveur de dev
 
 **Commandes**
 
@@ -184,13 +186,34 @@ python manage.py createsuperuser --email admin@example.com --username admin
 python manage.py runserver
 ```
 
-**Détails et explications**
+## 5. Tester l'app Django
 
-Il est possible de structurer son projet différemment, la structure que nous allons utilisez est basé sur celle proposée par le site de la bibliothèque Django REST Framework. Une fois que vous aurez compris et que vous serez à l'aise n'hésitez pas à chercher comment l'améliorer et l'adapter au mieux pour votre projet.
+En allant à l'URL proposée dans la console, après avoir démarré le serveur de dev, aller sur `/admin` et tenter de vous connecter avec l'utilisateur créé précédemment.
 
-## 6. Prêt pour le workshop ?
+S’il n'y a pas d'erreur et que vous arrivez sur une interface sur laquelle il est écrit "Django Administration", c'est tout bon et vous pouvez passer à la suite.
 
-TODO: Si vous voyez une image d'espace en atteignant `localhost:8000`... C'est que c'est tout bon !
+## 6. Installer les dépendances Vue.js
+
+**Commandes**
+
+```
+npm install
+```
+
+## 7. Démarrer le serveur de dev
+
+**Commandes**
+
+```
+npm run dev
+```
+
+
+## 8. Tester l'app Vue.js
+
+En allant à l'URL proposée dans la console, après avoir démarré le serveur de dev, vous devriez voir une application avec du texte et un GIF.
+
+Lisez le texte et vérifiez que ce qui est indiqué fonctionne correctement pour vous, si c'est le cas... C'est que vous êtes prêt pour le workshop !
 
 ---
 
@@ -201,9 +224,9 @@ La suite vous sera utile lorsque vous devrez créer votre propre projet pour le 
 
 ---
 
-# (TODO) Méthodologie - Comment va se dérouler le workshop ?
+# Méthodologie - Comment va se dérouler le workshop ?
 
-L'app est pré-existante. Il faudra remplir les trous (TODOs) pour la rendre fonctionnelle (eeeasy!).
+L'app est préexistante. Il faudra remplir les trous (TODOs) pour la rendre fonctionnelle (eeeasy!).
 
 On part de TODO-0-0 jusqu'à TODO-X-Y, avec à chaque étape quelques lignes à taper.
 
@@ -213,9 +236,11 @@ Les réponses se trouvent dans le README sur la branche `start` mais **c'est de 
 
 # Initialiser un nouveau projet Django de zéro
 
-Durant le workshop nous avons démarrés d'un projet existant, en réalité c'est juste pour nous faire gagner un peu de temps, mais c'est extrêmement simple à reproduire.
+Durant le workshop nous avons démarré d'un projet existant, en réalité c'est juste pour nous faire gagner du temps, mais c'est simple à reproduire.
 
-Le chapitre "setup project" de ce tuto permettent de réaliser les premières étapes du workshop (les chapitres suivants ont été vu ensemble durant le workshop) : https://www.django-rest-framework.org/tutorial/quickstart/
+Voici les commandes réalisées pour atteindre un état proche de celui du workshop:
+
+**TODO**
 
 ---
 
@@ -223,17 +248,23 @@ Le chapitre "setup project" de ce tuto permettent de réaliser les premières é
 
 ## Installer des extensions VSCode pour aider au développement
 
-Si vous utilisez Visual Studio Code, je vous recommande fortement d'installer et d'utiliser les pack d'extensions suivants.
+Si vous utilisez Visual Studio Code, je vous recommande fortement d'installer et d'utiliser les packs d'extensions suivants.
 
 - `Python Extension Pack` : Django
 - `Vue Volar extension Pack` : Vue.js
 
-Ces extensions VSCode facilite grandement le développement ! Je ne peux que vous recommandé très très fortement de les installer et de les utiliser. Certaines sont plus utiles que d'autres.  
-Même si cela est recommandé, il n'est pas obligatoire de les installer, vous êtes également libre de sélectionner dans ces packs, les extensions que que vous souhaitez utiliser.
+Ces extensions VSCode facilitent grandement le développement ! Je ne peux que vous recommander très très fortement de les installer et de les utiliser. Certaines sont plus utiles que d'autres.  
+Même si cela est recommandé, il n'est pas obligatoire de les installer, vous êtes également libre de sélectionner dans ces packs, les extensions que vous souhaitez utiliser.
 
-Ces extensions sont pour la pluspart configurable, voici quelques configurations que je vous recommande d'ajouter.
+Ces extensions sont pour la plupart configurables, voici quelques configurations que je vous recommande d'ajouter.
 
 Pour Django, il est également possible d'activer l'importation automatique dans les paramètres de Pylance https://code.visualstudio.com/docs/python/editing#_enable-auto-imports
+
+## Installer un formatter pour Python
+
+Il en existe plusieurs, voici celui que j'utilise :
+
+https://dev.to/adamlombard/how-to-use-the-black-python-code-formatter-in-vscode-3lo0
 
 ## Supprimer toutes les bibliothèques d'un environnement
 
@@ -262,12 +293,6 @@ pip index versions package
 > Replace "package" by the name of the package you're interested in
 
 https://stackoverflow.com/questions/4888027/python-and-pip-list-all-versions-of-a-package-thats-available
-
-## Installer un formatter pour Python
-
-Il en existe plusieurs, voici celui que j'utilise :
-
-https://dev.to/adamlombard/how-to-use-the-black-python-code-formatter-in-vscode-3lo0
 
 ## Rollback une ou plusieurs migrations
 
