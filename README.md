@@ -203,7 +203,7 @@ S’il n'y a pas d'erreur et que vous arrivez sur une interface sur laquelle il 
 Dans un nouveau bash exécutez
 
 ```
-cp frontend
+cd frontend
 npm install
 ```
 
