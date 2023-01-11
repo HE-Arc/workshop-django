@@ -30,6 +30,22 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
+# TODO-0-0 Activer le venv et démarrer le serveur backend
+# TODO-0-1 Exécuter les migrations et se créer 1 superuser (admin) si ce n'est pas déjà fait
+# TODO-0-2 Ajouter l'app caffeinecalculatorapp dans installed apps
+# TODO-0-3 Installer les extensions recommandées par le workshop et installer un formatter
+# TODO-0-4 Installer les dépendances du projet avec celles pour le dev (--dev)
+# et vérifier que toutes les dépendances sont correctement installées à l'aide de pip
+
+# TODO-1-9 Ajouter la bibliothèque rest_framework dans installed apps afin d'avoir accès à
+# la browsable API de la bibliothèque
+# TODO-1-10 Essayer d'accéder à /api/users/ et vérifier que des données correctes soient bien affichées
+
+# TODO-2-5 Ajouter la bibliothèque corsheaders dans installed apps
+# et ajouter "corsheaders.middleware.CorsMiddleware" aux middleware et en 1ère position
+# et ajouter l'url du frontend (localhost + 127.0.0.1) dans une nouvelle var de type tableau
+# nommé CORS_ALLOWED_ORIGINS, la var est à placer après les middleware
+
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -37,13 +53,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "corsheaders",
-    "rest_framework",
-    "caffeinecalculatorapp",
 ]
 
 MIDDLEWARE = [
-    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -52,8 +64,6 @@ MIDDLEWARE = [
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
-
-CORS_ALLOWED_ORIGINS = ["http://localhost:5173", "http://127.0.0.1:5173"]
 
 ROOT_URLCONF = "caffeinecalculator.urls"
 

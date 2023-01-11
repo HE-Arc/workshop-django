@@ -1,6 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 
+// TODO-4-0 Remplacer les TODObeverage par les bons éléments correspondants (beverages)
+
+// TODO-5-0 Remplacer les TODOcreatebeverage par les bons éléments correspondants (beverages.create)
+
+// TODO-8-0 Remplacer les TODOdetailsandstats par les bons éléments correspondants (detailsAndStats) -->
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -10,22 +16,22 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: "/details-and-stats",
-      name: "detailsAndStats",
-      // route level code-splitting
+      path: "/TODObeverage",
+      name: "TODObeverage",
+      // NOTE: route level code-splitting
       // this generates a separate chunk (About.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import("../views/DetailsAndStatsView.vue"),
-    },
-    {
-      path: "/beverages",
-      name: "beverages",
       component: () => import("../views/BeverageView.vue"),
     },
     {
-      path: "/beverages/create",
-      name: "beverages.create",
+      path: "/TODOcreatebeverage",
+      name: "TODOcreatebeverage",
       component: () => import("../views/CreateBeverageView.vue"),
+    },
+    {
+      path: "/TODOdetailsandstats",
+      name: "TODOdetailsandstats",
+      component: () => import("../views/DetailsAndStatsView.vue"),
     },
   ],
 });

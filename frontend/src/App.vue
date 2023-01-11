@@ -1,10 +1,10 @@
 <script setup>
-import NavBar from "./components/NavBar.vue";
+// TODO-2-7 Importer le composant NavBar et l'utiliser dans le DOM
 </script>
 
 <template>
   <q-layout view="hHh Lpr fFf">
-    <NavBar></NavBar>
+    <!-- navbar -->
 
     <q-page-container>
       <router-view />
