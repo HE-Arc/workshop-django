@@ -1,4 +1,5 @@
 {
   "python.analysis.typeCheckingMode": "basic",
-  "files.eol": "\n" // https://dev.to/wagslane/how-to-get-consistent-line-breaks-in-vs-code-lf-vs-crlf-2c3p
+  "files.eol": "\n",
+  "python.analysis.autoImportCompletions": true // https://dev.to/wagslane/how-to-get-consistent-line-breaks-in-vs-code-lf-vs-crlf-2c3p
 }
