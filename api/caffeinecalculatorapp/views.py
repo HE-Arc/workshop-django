@@ -1,5 +1,14 @@
+from urllib import response
 from django.contrib.auth.models import User
 from rest_framework import generics
+from .serializers import CaffeineItemSerializer, UserSerializer
+
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.views import APIView
+
+from .models import CaffeineItem
 from .serializers import UserSerializer
 
 # TODO-1-6 Créer des nouvelles views pour le User (décommenter simplement ce code, plus de détails après)
@@ -12,7 +21,34 @@ class UserDetail(generics.RetrieveAPIView):
 
 
 # TODO-3-2 Créer des nouvelles views en function-based pour le CaffeineItem
+# @api_view(["GET", "POST"])
+# def caffeine_item_list(request):
+#     if request.method == "GET":
+#         caffeine_items = CaffeineItem.objects.all()
+#         serializer = CaffeineItemSerializer(caffeine_items, many=True)
+#         return Response(serializer.data)
+    
+#     elif request.method == "POST":
+#         serializer = CaffeineItemSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 # TODO-3-3 Réécrire les views en class-based
+# class CaffeineItemList(APIView):
+#     def get(self, request, format=None):
+#         caffeine_items = CaffeineItem.objects.all()
+#         serializer = CaffeineItemSerializer(caffeine_items, many=True)
+#         return Response(serializer.data)
+
+#     def post(self, request, format=None):
+#         serializer = CaffeineItemSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status=status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 # TODO-3-4 Réécrire les views en utilisant les mixins
 # TODO-3-5 Réécrire les views en utilisant les generics
 # TODO-3-6 Réécrire les views en utilisant les viewsets
