@@ -1,7 +1,7 @@
 from unittest.util import _MAX_LENGTH
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import CaffeineItem
+from .models import CaffeineItem, ConsumedItem
 
 # TODO-1-5 Créer un nouveau serializer pour le User (décommenter simplement ce code, plus de détails après)
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -21,7 +21,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 #     description = serializers.CharField(required=False, max_length=2000)
 #     serving_size_in_ml = serializers.FloatField()
 #     caffeine_amount_in_mg = serializers.FloatField()
-    
+
 
 #     def create(self, validated_data):
 #         return CaffeineItem.objects.create(**validated_data)
@@ -53,5 +53,45 @@ class CaffeineItemSerializer(serializers.HyperlinkedModelSerializer):
 
 
 # TODO-6-2 Créer un nouveau serializer pour le ConsumedItem
+class ConsumedItemSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = ConsumedItem
+        fields = [
+            "url",
+            "id",
+            "user",
+            "caffeine_item",
+            "consumed_number",
+            "consumption_date",
+        ]
+
+
 # TODO-6-9 Créer un nouveau serializer héritant de User qui possède davantage de champs (FK)
+
+class ComplexUserSerializer(UserSerializer):
+    consumed_items = serializers.HyperlinkedRelatedField(
+        many=True, view_name="consumeditem-detail",
+        read_only=True)
+    class Meta:
+        model = User
+        fields = UserSerializer.Meta.fields + [
+            "consumed_items",
+        ]
+
 # TODO-6-11 Créer un nouveau serializer héritant de ConsumedItem qui possède davantage de champs (FK)
+        
+        
+class ComplexConsumedItemSerializer(ConsumedItemSerializer):
+    # consumed_items = serializers.HyperlinkedRelatedField(
+    #     many=True, view_name="consumeditem-detail",
+    #     read_only=True)
+    
+    # !! Ne pas utiliser le ComplexUser, sinon nous avons des ref circulaires
+    user_object = UserSerializer(source="user", read_only=True)
+    caffeine_item_object = CaffeineItemSerializer(source="caffeine_item", read_only=True)
+    class Meta:
+        model = ConsumedItem
+        fields = ConsumedItemSerializer.Meta.fields + [
+            "user_object",
+            "caffeine_item_object",
+        ]
