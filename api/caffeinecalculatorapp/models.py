@@ -6,7 +6,7 @@ class CaffeineItem(models.Model):
   name = models.CharField(max_length=100)
   description = models.CharField(max_length=2000, blank=True)
   serving_size_in_ml = models.FloatField()
-  caffeine_amount_in_ml = models.FloatField()
+  caffeine_amount_in_mg = models.FloatField()
   created = models.DateTimeField(auto_now_add=True)
   updated = models.DateTimeField(auto_now=True)
 # TODO-1-1 Créer une nouvelle migration et l'appliquer
