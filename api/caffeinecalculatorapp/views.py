@@ -99,7 +99,7 @@ class ConsumedItemViewSet(viewsets.ModelViewSet):
         
     
 # TODO-6-6 Remplacer les generic views du User par un viewset
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = User.objects.all()
     serializer_class = ComplexUserSerializer
     
