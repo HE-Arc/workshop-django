@@ -12,7 +12,10 @@
     <q-tabs align="left">
       <q-route-tab :to="{ name: 'home' }" label="Home" />
       <q-route-tab :to="{ name: 'beverages' }" label="Add beverage" />
-      <q-route-tab TODOdetailsandstats label="Details and stats" />
+      <q-route-tab
+        :to="{ name: 'detailsAndStats' }"
+        label="Details and stats"
+      />
     </q-tabs>
   </q-header>
 </template>
