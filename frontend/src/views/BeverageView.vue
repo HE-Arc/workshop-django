@@ -1,16 +1,43 @@
 <script setup>
 // TODO-4-1 Importer axios, ref et onMounted
+import axios from 'axios';
+import {ref, onMounted} from 'vue';
+
 // TODO-4-2 Récupérer tous les caffeine items de l'API (ref var, async func, axios, onMounted)
+const caffeineItems = ref([]);
+
+const fetchCaffeineItems = async() => {
+  const result = await axios.get("http://127.0.0.1:8000/api/caffeine-items/");
+
+  caffeineItems.value = result.data;
+};
+
 // TODO-4-5 Récupérer tous les users de l'API (ref var, async func, axios, onMounted)
+
+const users = ref([]);
+const currentUser = ref(null);
+
+const fetchUsers = async() => {
+  users.value = (await axios.get("http://127.0.0.1:8000/api/users/")).data;
+};
+
 
 // TODO-7-0 Permettre d'enregistrer des consumed items (axios post, form fields, date.now, url vs id)
 // TODO-7-2 Créer une variable nommée errors permettant de récupérer les erreurs de l'appel (init à null)
 
 // TODO-9-1 importer le composant ErrorBanner, l'utiliser dans le DOM et tester le résultat
+
+// Execute le code quand le composant démarre
+onMounted(() => {
+  fetchCaffeineItems();
+  fetchUsers();
+});
 </script>
 
 <template>
   <!-- TODO-4-3 Afficher les caffeine items reçus de l'API -->
+  <!-- {{ caffeineItems }} -->
+
   <!-- TODO-4-4 Remplacer les TODOcaffeine par les bons éléments correspondants -->
   <!-- TODO-4-6 Remplacer les TODOuser par les bons éléments correspondants -->
 
@@ -20,10 +47,10 @@
   <!-- TODO-7-3 Afficher le contenu de la var errors ici pour l'instant -->
   <q-page padding>
     <q-select
-      v-model="TODOuser"
-      option-value="TODOuser"
-      option-label="TODOuser"
-      :options="TODOuser"
+      v-model="currentUser"
+      option-value="id"
+      option-label="username"
+      :options="users"
       label="User"
       outlined
     />
@@ -38,13 +65,13 @@
     <div class="row">
       <div
         class="text-center col-12 col-sm-6 col-md-4 col-lg-3 q-pa-sm"
-        v-for="(item, index) in TODOcaffeine"
+        v-for="(item, index) in caffeineItems"
         :key="index"
       >
         <q-card class="my-card">
           <q-card-section>
-            <div class="text-h4">TODOcaffeine</div>
-            <div class="text-subtitle2">TODOcaffeine</div>
+            <div class="text-h4">{{ item.name }}</div>
+            <div class="text-subtitle2">{{ item.description }}</div>
           </q-card-section>
 
           <q-separator inset />
@@ -52,11 +79,11 @@
           <q-card-section>
             <div>Serving size</div>
             <q-badge class="text-h6 q-pa-xs" color="purple">
-              TODOcaffeine ml
+              {{ item.serving_size_in_ml }} ml
             </q-badge>
             <div class="q-mt-md">Caffeine amount</div>
             <q-badge class="text-h6 q-pa-xs" color="teal">
-              TODOcaffeine mg
+              {{ item.caffeine_amount_in_mg }} mg
             </q-badge>
           </q-card-section>
 
