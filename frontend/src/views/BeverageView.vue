@@ -56,7 +56,7 @@ onMounted(() => {
     />
 
     <div class="text-left q-my-md">
-      <q-btn color="primary" TODOcreatebeverage>
+      <q-btn color="primary" :to="{name: 'beverages.create'}">
         <q-icon left size="xl" name="mdi-plus-box" />
         <div>Create a new beverage</div>
       </q-btn>

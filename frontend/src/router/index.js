@@ -24,8 +24,8 @@ const router = createRouter({
       component: () => import("../views/BeverageView.vue"),
     },
     {
-      path: "/TODOcreatebeverage",
-      name: "TODOcreatebeverage",
+      path: "/beverages/create",
+      name: "beverages.create",
       component: () => import("../views/CreateBeverageView.vue"),
     },
     {
