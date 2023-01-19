@@ -3,7 +3,7 @@
 // travailler avec la composition API de Vue.js
 // TODO-2-2 Importer axios, ref et onMounted
 import axios from "axios";
-import {ref, onMounted} from "vue";
+import { ref, onMounted } from "vue";
 // TODO-2-3 Récupérer tous les users de l'API (ref var, async func, axios, onMounted)
 const users = ref([]);
 
@@ -21,7 +21,8 @@ onMounted(() => {
   <!-- TODO-2-0 Installer les dépendances du projet et exécuter le serveur de dev -->
   <!-- TODO-2-4 Essayer d'afficher les users reçus, voir qu'une erreur CORS apparaît...
   ...la résoudre avec le prochain point -->
-  {{ users }}
+  <!-- {{ users }} -->
+
   <!-- TODO-2-6 Essayer à nouveau d'afficher les users reçus, voir que cette fois cela fonctionne -->
   <q-page padding>
     <img

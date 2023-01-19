@@ -98,7 +98,13 @@ onMounted(() => {
           <q-separator inset />
 
           <q-card-actions vertical>
-            <q-btn push @click="submit(item)" class="q-ma-xs" color="primary" dense>
+            <q-btn
+              push
+              @click="submit(item)"
+              class="q-ma-xs"
+              color="primary"
+              dense
+            >
               <q-icon left size="xl" name="mdi-numeric-positive-1" />
               <div>I drank this one today</div>
             </q-btn>

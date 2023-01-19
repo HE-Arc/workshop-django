@@ -14,7 +14,7 @@ const fetchUsers = async () => {
 };
 
 const rows = ref([]);
-const currentRows = ref(null);
+const currentRows = ref([]);
 
 const fetchItems = async () => {
   const res = await axios.get("http://127.0.0.1:8000/api/consumed-items/");
@@ -36,13 +36,16 @@ const fetchItems = async () => {
 // les éléments de l'utilisateur sélectionné
 const updateVal = () => {
   const res = [];
+
   servingSizeTotal.value = 0;
   caffeineAmountTotal.value = 0;
   servingSizeToday.value = 0;
   caffeineAmountToday.value = 0;
+
   rows.value.forEach((row) => {
     if (row.user == currentUser.value.username) {
       res.push(row);
+
       servingSizeTotal.value += row.serving_size_in_ml;
       caffeineAmountTotal.value += row.caffeine_amount_in_mg;
       const rowDate = new Date(row.consumption_date);
@@ -57,6 +60,7 @@ const updateVal = () => {
       }
     }
   });
+
   currentRows.value = res;
 };
 
@@ -136,7 +140,8 @@ onMounted(() => {
 
 <template>
   <!-- TODO-8-3 Afficher les consumed items reçus de l'API -->
-  {{ rows }}
+  <!-- {{ rows }} -->
+
   <!-- TODO-8-4 Remplacer les TODOconsumed par les bons éléments correspondants -->
   <!-- TODO-8-7 Remplacer les TODOuser par les bons éléments correspondants et remplacer rows
   par currentRows dans la table en dessous afin de n'afficher que les éléments de l'utilisateur actuel -->
@@ -227,8 +232,8 @@ onMounted(() => {
         </q-card>
 
         <q-table
-          :pagination="pagination"
-          :rows="rows"
+          :pagination="initialPagination"
+          :rows="currentRows"
           :columns="columns"
           row-key="name"
         >

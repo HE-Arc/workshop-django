@@ -40,7 +40,7 @@ const submit = async () => {
 
 <template>
   <!-- TODO-5-6 Afficher le contenu de la var errors ici pour l'instant -->
-  {{ errors }}
+  <!-- {{ errors }} -->
 
   <!-- TODO-5-7 Remplacer les TODOform par les bons éléments correspondants -->
   <!-- TODO-5-8 Essayer d'enregistrer des éléments sur le site et voir si ces éléments sont correctement
