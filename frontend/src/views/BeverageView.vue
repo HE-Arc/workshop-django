@@ -3,6 +3,9 @@
 import axios from "axios";
 import { ref, onMounted } from "vue";
 
+// TODO-9-1 importer le composant ErrorBanner, l'utiliser dans le DOM et tester le résultat
+import ErrorBanner from "../components/ErrorBanner.vue";
+
 // TODO-4-2 Récupérer tous les caffeine items de l'API (ref var, async func, axios, onMounted)
 const caffeineItems = ref([]);
 
@@ -13,7 +16,6 @@ const fetchCaffeineItems = async () => {
 };
 
 // TODO-4-5 Récupérer tous les users de l'API (ref var, async func, axios, onMounted)
-
 const users = ref([]);
 const currentUser = ref(null);
 
@@ -21,19 +23,27 @@ const fetchUsers = async () => {
   users.value = (await axios.get("http://127.0.0.1:8000/api/users/")).data;
 };
 
+// TODO-7-2 Créer une variable nommée errors permettant de récupérer les erreurs de l'appel (init à null)
+const errors = ref(null);
+
 // TODO-7-0 Permettre d'enregistrer des consumed items (axios post, form fields, date.now, url vs id)
 const submit = async (caffeine_item) => {
-  await axios.post("http://127.0.0.1:8000/api/consumed-items/", {
-    user: currentUser.value?.url,
-    caffeine_item: caffeine_item.url,
-    consumed_number: 1,
-    consumption_date: new Date(),
-  });
+  try {
+    errors.value = null;
+
+    const res = await axios.post("http://127.0.0.1:8000/api/consumed-items/", {
+      user: currentUser.value?.url,
+      caffeine_item: caffeine_item.url,
+      consumed_number: 1,
+      consumption_date: new Date(),
+    });
+
+    console.log(res);
+  } catch (error) {
+    errors.value = error.response.data;
+    console.log(error.response.data);
+  }
 };
-
-// TODO-7-2 Créer une variable nommée errors permettant de récupérer les erreurs de l'appel (init à null)
-
-// TODO-9-1 importer le composant ErrorBanner, l'utiliser dans le DOM et tester le résultat
 
 // Execute le code quand le composant démarre
 onMounted(() => {
@@ -54,6 +64,8 @@ onMounted(() => {
   <!-- TODO-7-1 Remplacer les TODOconsumed par les bons éléments correspondants -->
   <!-- TODO-7-3 Afficher le contenu de la var errors ici pour l'instant -->
   <q-page padding>
+    <ErrorBanner :errors="errors" />
+
     <q-select
       v-model="currentUser"
       option-value="id"

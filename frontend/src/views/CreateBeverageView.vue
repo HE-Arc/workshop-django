@@ -2,18 +2,22 @@
 // TODO-5-1 Importer axios, ref
 import axios from "axios";
 import { ref } from "vue";
+// TODO-9-1 importer le composant ErrorBanner, l'utiliser dans le DOM et tester le résultat
+import ErrorBanner from "../components/ErrorBanner.vue";
 
+// TODO-5-4 Créer une variable bool nommée success permettant d'afficher un message de succès (utile plus tard)
 const success = ref(false);
+// TODO-5-5 Créer une variable nommée errors permettant de récupérer les erreurs de l'appel (init à null)
 const errors = ref(null);
 
 // TODO-5-2 Créer des variables string pour tous les éléments de coffeine item :
 //name, description, servingSize et caffeineAmount (ref var)
-
 const name = ref("");
 const description = ref("");
 const servingSize = ref("");
 const caffeineAmount = ref("");
 
+// TODO-5-3 Créer une fonction nommée submit permettant d'envoyer les données du form à l'API
 const submit = async () => {
   try {
     success.value = false;
@@ -30,12 +34,6 @@ const submit = async () => {
     errors.value = error.response.data;
   }
 };
-
-// TODO-5-3 Créer une fonction nommée submit permettant d'envoyer les données du form à l'API
-// TODO-5-4 Créer une variable bool nommée success permettant d'afficher un message de succès (utile plus tard)
-// TODO-5-5 Créer une variable nommée errors permettant de récupérer les erreurs de l'appel (init à null)
-
-// TODO-9-1 importer le composant ErrorBanner, l'utiliser dans le DOM et tester le résultat
 </script>
 
 <template>
@@ -46,6 +44,8 @@ const submit = async () => {
   <!-- TODO-5-8 Essayer d'enregistrer des éléments sur le site et voir si ces éléments sont correctement
   ajoutés à la BDD et affichés sur la page /beverages -->
   <q-page padding>
+    <ErrorBanner :errors="errors" />
+
     <q-form class="q-gutter-md" @submit="submit()">
       <div class="row self-center justify-evenly">
         <div class="col-8 col-md-6 q-mt-md">
