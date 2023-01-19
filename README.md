@@ -633,7 +633,7 @@ class ConsumedItem(models.Model):
 
 TODO-6-1
 
-``
+```
 python manage.py makemigrations caffeinecalculatorapp
 
 python manage.py migrate
