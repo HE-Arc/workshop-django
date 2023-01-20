@@ -256,7 +256,95 @@ Durant le workshop nous avons démarré d'un projet existant, en réalité c'est
 
 Voici les commandes réalisées pour atteindre un état proche de celui du workshop:
 
-**TODO**
+## Prérequis
+
+Avant de réaliser les étapes suivantes, assurez-vous d'avoir correctement installé Python et Node.js comme demandé pour le workshop.
+
+## Django
+
+Installez pipenv si ce n'est pas déjà fait.
+
+Vous trouverez des explications sur les commandes principales à connaitre afin d'utiliser pipenv correctement : https://pipenv.pypa.io/en/latest/
+
+A la racine de votre projet, créez un dossier pour le backend (p.ex. api).
+
+Ouvrez un bash/terminal/autre dans ce dossier que vous venez de créer et exécutez-y la commande suivante afin de créer un venv.
+
+```sh
+pipenv install
+```
+
+Installez la dernière version de Django et de Django REST Framework. Vous pouvez trouver les versions des package à l'aide de `pip index versions package_name`.
+
+```sh
+pipenv install django==version_number
+pipenv install djangorestframework==version_number
+
+django-admin startproject tutorial . # ATTENTION le "." en fin de commande est important ici
+django-admin startapp tutorialapp
+
+python manage.py migrate
+
+python manage.py createsuperuser --email admin@example.com --username admin
+```
+
+Ajoutez 'rest_framework' aux INSTALLED_APPS se trouvant dans le fichier `tutorial/settings.py`.
+
+```
+INSTALLED_APPS = [
+    ...
+    'rest_framework',
+]
+```
+
+Le projet backend devrait déjà pouvoir fonctionner.
+
+```
+python manage.py runserver
+```
+
+Vous devriez voir une page Django à l'URL : http://127.0.0.1:8000/
+
+Maintenant, il faut créer un model, un serializer, une view et des urls pour pouvoir commencer à afficher des données provenant de la base de données.
+
+Une fois fait et si tout a bien été configuré, vous devriez pouvoir avoir accès à la "browsable API" de Django REST Framework.
+
+## Vue.js
+
+A la racine de votre projet, créez un dossier pour le frontend (p.ex. frontend).
+
+Ouvrez un bash/terminal/autre dans ce dossier que vous venez de créer et exécutez-y la commande suivante afin de créer un projet vue.js.
+
+```sh
+npm init vue@latest . # ATTENTION le "." en fin de commande est important ici
+``` 
+
+Vous devrez répondre à une série de questions, voici ce que je vous recommande de sélectionner :
+
+![image](https://user-images.githubusercontent.com/39899628/213749904-d7598ea1-f13d-4b2e-8545-68c18f9c4892.png)
+
+Vous pouvez ensuite installer les dépendances et `axios` pour vous permettre de réaliser des requêtes asynchrones.
+
+```sh
+npm install
+
+npm install axios
+```
+
+Démarrez le serveur de développement.
+
+```sh
+npm run dev
+```
+
+Vous devriez voir une page Vue.js à l'URL : http://localhost:5173/
+
+Maintenant, il faut créer une nouvelle view et afficher des données provenant de votre API à l'aide d'appels asynchrones en utilisant axios.
+
+Durant le workshop nous avons utilisé un framework de styles et composants pour Vue 3 qui se nomme Quasar, vous êtes libre d'utiliser le même (je vous le recommande) ou d'en utiliser un autre.  
+Si vous partez sur Quasar, vous pouvez l'installer et le configurer en suivant ce lien (vous pouvez sauter la section "Creating a Vite project", c'est déjà fait dans notre cas) : https://quasar.dev/start/vite-plugin
+
+> NOTE : Attention, si vous choisissez d'utiliser Vuetify (qui est normalement l'option par défaut), soyez au courant que la version actuellement compatible avec Vue 3 est incomplète. Renseignez-vous un peu avant de choisir entre Vuetify/Quasar/autre.
 
 ---
 
