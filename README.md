@@ -250,11 +250,11 @@ On fait une recherche dans l'arborescence (Ctrl+Shift+F avec VSCode p.ex) et on 
 
 Les réponses se trouvent dans le README sur la branche `start` mais **c'est de la triche de regarder**. C'est seulement en cas d'urgence (je vous vois).
 
-# Initialiser un nouveau projet Django de zéro
+# Initialiser un nouveau projet de zéro
 
 Durant le workshop nous avons démarré d'un projet existant, en réalité c'est juste pour nous faire gagner du temps, mais c'est simple à reproduire.
 
-Voici les commandes réalisées pour atteindre un état proche de celui du workshop:
+Voici quelques explications vous permettant de créer un projet Django et Vue.js comme dans le workshop. Le résultat se rapproche de celui du workshop, mais il faudra le compléter avec ce qui a été vu durant le workshop.
 
 ## Prérequis
 
