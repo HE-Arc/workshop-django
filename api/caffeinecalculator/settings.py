@@ -88,22 +88,22 @@ WSGI_APPLICATION = "caffeinecalculator.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": env("ENGINE"),
-        "NAME": BASE_DIR / env("NAME"),
-    }
-}
 # DATABASES = {
-#     'default': {
-#         'ENGINE': env("ENGINE"),
-#         'NAME': env("NAME"),
-#         'USER': env("USER"),
-#         'PASSWORD': env("PASSWORD"),
-#         'HOST': env("HOST"),
-#         'PORT': env("PORT"),
+#     "default": {
+#         "ENGINE": env("ENGINE"),
+#         "NAME": BASE_DIR / env("NAME"),
 #     }
 # }
+DATABASES = {
+    'default': {
+        'ENGINE': env("ENGINE"),
+        'NAME': env("NAME"),
+        'USER': env("USERNAME"),
+        'PASSWORD': env("PASSWORD"),
+        'HOST': env("HOST"),
+        'PORT': env("PORT"),
+    }
+}
 
 
 # Password validation
@@ -150,7 +150,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
     ]
 }
