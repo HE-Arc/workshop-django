@@ -11,13 +11,15 @@ const users = ref([]);
 const user = ref(null);
 
 const fetchUsers = async () => {
-  const res = await axios.get("http://localhost:8000/api/users/");
+  const res = await axios.get(`${import.meta.env.VITE_HOST}/api/users/`);
 
   users.value = res.data;
 };
 
 const fetchCaffeineItems = async () => {
-  const res = await axios.get("http://localhost:8000/api/caffeine-items/");
+  const res = await axios.get(
+    `${import.meta.env.VITE_HOST}/api/caffeine-items/`
+  );
 
   caffeineItems.value = res.data;
 };
@@ -37,7 +39,7 @@ const submit = async (caffeine_item) => {
     errors.value = null;
 
     const res = await axios.post(
-      "http://localhost:8000/api/consumed-items/",
+      `${import.meta.env.VITE_HOST}/api/consumed-items/`,
       {
         user: user.value?.url,
         caffeine_item: caffeine_item.url,

@@ -20,7 +20,7 @@ const initialPagination = {
 };
 
 const fetchUsers = async () => {
-  const res = await axios.get("http://localhost:8000/api/users/");
+  const res = await axios.get(`${import.meta.env.VITE_HOST}/api/users/`);
 
   users.value = res.data;
 };
@@ -36,12 +36,15 @@ const readCookie = (name) => {
   return null;
 };
 const fetchItems = async () => {
-  const res = await axios.get("http://localhost:8000/api/consumed-items/", {
-    headers: {
-      "x-csrftoken": readCookie("csrftoken"),
-    },
-    withCredentials: true,
-  });
+  const res = await axios.get(
+    `${import.meta.env.VITE_HOST}/api/consumed-items/`,
+    {
+      headers: {
+        "x-csrftoken": readCookie("csrftoken"),
+      },
+      withCredentials: true,
+    }
+  );
 
   rows.value = [];
 
@@ -88,7 +91,7 @@ const updateVal = () => {
 };
 
 const remove = async (id) => {
-  await axios.delete(`http://localhost:8000/api/consumed-items/${id}/`);
+  await axios.delete(`${import.meta.env.VITE_HOST}/api/consumed-items/${id}/`);
 
   await fetchItems();
 
