@@ -8,6 +8,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
 from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 
 from .models import CaffeineItem, ConsumedItem
 from .serializers import (
@@ -191,6 +192,8 @@ class UserViewSet(viewsets.ReadOnlyModelViewSet):
 
 
 class ConsumedItemViewSet(viewsets.ModelViewSet):
+    permission_classes = [IsAuthenticated]
+    
     queryset = ConsumedItem.objects.all()
     serializer_class = ComplexeConsumedItemSerializer
 

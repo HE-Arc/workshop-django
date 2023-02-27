@@ -20,13 +20,28 @@ const initialPagination = {
 };
 
 const fetchUsers = async () => {
-  const res = await axios.get("http://127.0.0.1:8000/api/users/");
+  const res = await axios.get("http://localhost:8000/api/users/");
 
   users.value = res.data;
 };
 
+const readCookie = (name) => {
+  const nameEQ = name.concat("=");
+  const ca = document.cookie.split(";");
+  for (let i = 0; i < ca.length; i += 1) {
+    let c = ca[i];
+    while (c.charAt(0) === " ") c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
+};
 const fetchItems = async () => {
-  const res = await axios.get("http://127.0.0.1:8000/api/consumed-items/");
+  const res = await axios.get("http://localhost:8000/api/consumed-items/", {
+    headers: {
+      "x-csrftoken": readCookie("csrftoken"),
+    },
+    withCredentials: true,
+  });
 
   rows.value = [];
 
@@ -73,7 +88,7 @@ const updateVal = () => {
 };
 
 const remove = async (id) => {
-  await axios.delete(`http://127.0.0.1:8000/api/consumed-items/${id}/`);
+  await axios.delete(`http://localhost:8000/api/consumed-items/${id}/`);
 
   await fetchItems();
 

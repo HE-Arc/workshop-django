@@ -17,7 +17,7 @@ const submit = async () => {
     errors.value = null;
     success.value = false;
 
-    await axios.post("http://127.0.0.1:8000/api/caffeine-items/", {
+    await axios.post("http://localhost:8000/api/caffeine-items/", {
       name: name.value,
       description: description.value,
       serving_size_in_ml: servingSize.value,
