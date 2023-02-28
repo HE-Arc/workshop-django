@@ -24,6 +24,11 @@ const fetchCaffeineItems = async () => {
   caffeineItems.value = res.data;
 };
 
+/**
+ * This is not DRY...
+ * readCookie is placed here by simplicity, ideally it
+ * should be placed somewhere it can be reused by other scripts
+ */
 const readCookie = (name) => {
   const nameEQ = name.concat("=");
   const ca = document.cookie.split(";");
@@ -46,6 +51,7 @@ const submit = async (caffeine_item) => {
         consumed_number: 1,
         consumption_date: new Date(),
       },
+      // This is not DRY... this could be setup globally using axios interceptors
       {
         headers: {
           "x-csrftoken": readCookie("csrftoken"),

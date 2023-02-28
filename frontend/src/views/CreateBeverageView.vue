@@ -12,17 +12,42 @@ const description = ref("");
 const servingSize = ref("");
 const caffeineAmount = ref("");
 
+/**
+ * This is not DRY...
+ * readCookie is placed here by simplicity, ideally it
+ * should be placed somewhere it can be reused by other scripts
+ */
+const readCookie = (name) => {
+  const nameEQ = name.concat("=");
+  const ca = document.cookie.split(";");
+  for (let i = 0; i < ca.length; i += 1) {
+    let c = ca[i];
+    while (c.charAt(0) === " ") c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
+};
 const submit = async () => {
   try {
     errors.value = null;
     success.value = false;
 
-    await axios.post(`${import.meta.env.VITE_HOST}/api/caffeine-items/`, {
-      name: name.value,
-      description: description.value,
-      serving_size_in_ml: servingSize.value,
-      caffeine_amount_in_mg: caffeineAmount.value,
-    });
+    await axios.post(
+      `${import.meta.env.VITE_HOST}/api/caffeine-items/`,
+      {
+        name: name.value,
+        description: description.value,
+        serving_size_in_ml: servingSize.value,
+        caffeine_amount_in_mg: caffeineAmount.value,
+      },
+      // This is not DRY... this could be setup globally using axios interceptors
+      {
+        headers: {
+          "x-csrftoken": readCookie("csrftoken"),
+        },
+        withCredentials: true,
+      }
+    );
 
     success.value = true;
   } catch (error) {

@@ -25,25 +25,9 @@ const fetchUsers = async () => {
   users.value = res.data;
 };
 
-const readCookie = (name) => {
-  const nameEQ = name.concat("=");
-  const ca = document.cookie.split(";");
-  for (let i = 0; i < ca.length; i += 1) {
-    let c = ca[i];
-    while (c.charAt(0) === " ") c = c.substring(1, c.length);
-    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
-  }
-  return null;
-};
 const fetchItems = async () => {
   const res = await axios.get(
-    `${import.meta.env.VITE_HOST}/api/consumed-items/`,
-    {
-      headers: {
-        "x-csrftoken": readCookie("csrftoken"),
-      },
-      withCredentials: true,
-    }
+    `${import.meta.env.VITE_HOST}/api/consumed-items/`
   );
 
   rows.value = [];
@@ -90,8 +74,32 @@ const updateVal = () => {
   currentRows.value = res;
 };
 
+/**
+ * This is not DRY...
+ * readCookie is placed here by simplicity, ideally it
+ * should be placed somewhere it can be reused by other scripts
+ */
+const readCookie = (name) => {
+  const nameEQ = name.concat("=");
+  const ca = document.cookie.split(";");
+  for (let i = 0; i < ca.length; i += 1) {
+    let c = ca[i];
+    while (c.charAt(0) === " ") c = c.substring(1, c.length);
+    if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+  }
+  return null;
+};
 const remove = async (id) => {
-  await axios.delete(`${import.meta.env.VITE_HOST}/api/consumed-items/${id}/`);
+  await axios.delete(
+    `${import.meta.env.VITE_HOST}/api/consumed-items/${id}/`,
+    // This is not DRY... this could be setup globally using axios interceptors
+    {
+      headers: {
+        "x-csrftoken": readCookie("csrftoken"),
+      },
+      withCredentials: true,
+    }
+  );
 
   await fetchItems();
 
