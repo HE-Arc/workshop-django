@@ -90,18 +90,18 @@ WSGI_APPLICATION = "caffeinecalculator.wsgi.application"
 
 # DATABASES = {
 #     "default": {
-#         "ENGINE": env("ENGINE"),
-#         "NAME": BASE_DIR / env("NAME"),
+#         "ENGINE": env("DB_ENGINE"),
+#         "NAME": BASE_DIR / env("DB_NAME"),
 #     }
 # }
 DATABASES = {
     'default': {
-        'ENGINE': env("ENGINE"),
-        'NAME': env("NAME"),
-        'USER': env("USERNAME"),
-        'PASSWORD': env("PASSWORD"),
-        'HOST': env("HOST"),
-        'PORT': env("PORT"),
+        'ENGINE': env("DB_ENGINE"),
+        'NAME': env("DB_NAME"),
+        'USER': env("DB_USERNAME"),
+        'PASSWORD': env("DB_PASSWORD"),
+        'HOST': env("DB_HOST"),
+        'PORT': env("DB_PORT"),
     }
 }
 
@@ -140,7 +140,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "api/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # Default primary key field type
