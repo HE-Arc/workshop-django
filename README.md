@@ -21,7 +21,7 @@ Branches par année
 
 # Prérequis
 
-Dans ce workshop nous utiliserons la version 4.1.5 de Django et la version 3.2.45 de Vue.js.
+Dans ce workshop nous utiliserons la version 4.2.5 de Django et la version 3.3.4 de Vue.js.
 
 La première étape est d'installer les différents prérequis listés ci-dessous.
 
@@ -37,14 +37,14 @@ C'est une source d'erreur très fréquente, il faut s'y faire au début, cela de
 
 ## Python
 
-Pour le workshop vous aurez besoin de la version de Python >= 3.8
+Pour le workshop vous aurez besoin de la version de Python >= 3.8.
 
 https://www.python.org/downloads/
 
-> Le workshop a été testé avec la version 3.11.1 de Python
+> Le workshop a été testé avec la version 3.11.5 de Python
 
-> Dépendance provenant du site officiel de Django pour la version utilisée dans ce workshop https://docs.djangoproject.com/en/4.1/faq/install/#faq-python-version-support  
-> Documentation Django officielle pour la version utilisée de Django https://docs.djangoproject.com/en/4.1/
+> Dépendance provenant du site officiel de Django pour la version utilisée dans ce workshop https://docs.djangoproject.com/en/4.2/faq/install/#what-python-version-can-i-use-with-django  
+> Documentation Django officielle pour la version utilisée de Django https://docs.djangoproject.com/en/4.2/
 
 ```
 python --version
@@ -54,7 +54,7 @@ python --version
 
 pip est le "package manager" qui vient par défaut avec Python, assurez-vous simplement d'avoir une version compatible.
 
-> Le workshop a été testé avec la version 22.3.1 de pip
+> Le workshop a été testé avec la version 23.2.1 de pip
 
 ```
 pip --version
@@ -72,7 +72,7 @@ Pour le workshop vous aurez besoin de la version de Node.js >= 16.0
 
 https://nodejs.org/en/
 
-> Le workshop a été testé avec la version 18.13.0 de Node.js
+> Le workshop a été testé avec la version 20.6.0 de Node.js
 
 > Dépendance provenant du site officiel de Vue.js https://vuejs.org/guide/quick-start.html
 
@@ -84,7 +84,7 @@ node --version
 
 npm est le "package manager" qui vient par défaut avec Node.js, assurez-vous simplement d'avoir une version compatible.
 
-> Le workshop a été testé avec la version 8.19.3 de npm
+> Le workshop a été testé avec la version 10.0.0 de npm
 
 ```
 npm --version
@@ -101,8 +101,8 @@ Vous trouverez ci-dessous les quelques commandes qui vous permettront de commenc
 > SSH recommandé
 
 ```
-git clone git@github.com:HE-Arc/workshop-django-2.0.git
-cd workshop-django-2.0
+git clone git@github.com:HE-Arc/workshop-django.git
+cd workshop-django
 git checkout check
 ```
 
@@ -112,7 +112,7 @@ git checkout check
 
 Installer `pipenv` qui s'occupera de gérer nos bibliothèques Python via pip.
 
-> Testé avec la version `pipenv==2022.12.19`
+> Testé avec la version `pipenv==2023.9.1`
 
 ```
 pip install pipenv
