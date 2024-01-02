@@ -132,20 +132,18 @@ pipenv install
 > pipenv install package==x.y.z
 > ```
 
-Lancer des commandes depuis l'environnement virtuel
+Activer l'env virtuel
+
+```
+pipenv shell
+```
+
+> REMARQUE : pour quitter l'environnement virtuel, il suffit de taper `exit` dans la console.
+
+Ou lancer des commandes depuis l'environnement virtuel
 
 ```
 pipenv run python ...
-```
-
-Ou activer l'env virtuel
-
-> REMARQUE : Il se peut que sur Windows, l'environnement virtuel est créé dans le dossier personnel de l'utilisateurs. Afin de savoir son emplacement à tout moment, vous pouvez utiliser la commande `pipenv --venv` dans le dossier contenant les dépendances installés.
-
-```
-source path_to_venv/Scripts/activate
-# Or
-. path_to_venv/Scripts/activate
 ```
 
 > Si la commande ne fonctionne pas, c'est peut être un problème de permission, essayez d'exécuter en mode admin.
@@ -177,13 +175,13 @@ Vous devez le créer une fois au début et/ou à chaque fois que vous clonez le 
 Migrez
 
 ```
-pipenv run python manage.py migrate
+python manage.py migrate
 ```
 
 Créez un nouvel utilisateur admin et donnez-lui un mot de passe dont vous pourrez vous rappeler.
 
 ```
-pipenv run python manage.py createsuperuser --email admin@example.com --username admin
+python manage.py createsuperuser --email admin@example.com --username admin
 ```
 
 > Si vous êtes sur Windows et que vous avez des erreurs avec ces commandes, vous pouvez essayer de préfixé les commandes python par `winpty`
@@ -195,7 +193,7 @@ pipenv run python manage.py createsuperuser --email admin@example.com --username
 **Commandes**
 
 ```
-pipenv run python manage.py runserver
+python manage.py runserver
 ```
 
 ## 5. Tester l'app Django
@@ -281,6 +279,12 @@ Ouvrez un bash/terminal/autre dans ce dossier que vous venez de créer et exécu
 pipenv install
 ```
 
+Lancer l'environnement virtuel
+
+```
+pipenv shell
+```
+
 Installez la dernière version de Django et de Django REST Framework. Vous pouvez trouver les versions des package à l'aide de `pip index versions package_name`.
 
 ```sh
@@ -290,9 +294,9 @@ pipenv install djangorestframework==version_number
 django-admin startproject tutorial . # ATTENTION le "." en fin de commande est important ici
 django-admin startapp tutorialapp
 
-pipenv run python manage.py migrate
+python manage.py migrate
 
-pipenv run python manage.py createsuperuser --email admin@example.com --username admin
+python manage.py createsuperuser --email admin@example.com --username admin
 ```
 
 Ajoutez 'rest_framework' aux INSTALLED_APPS se trouvant dans le fichier `tutorial/settings.py`.
@@ -307,7 +311,7 @@ INSTALLED_APPS = [
 Le projet backend devrait déjà pouvoir fonctionner.
 
 ```
-pipenv run python manage.py runserver
+python manage.py runserver
 ```
 
 Vous devriez voir une page Django à l'URL : http://127.0.0.1:8000/
