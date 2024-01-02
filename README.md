@@ -21,7 +21,7 @@ Branches par année
 
 # Prérequis
 
-Dans ce workshop nous utiliserons la version 4.2.5 de Django et la version 3.3.4 de Vue.js.
+Dans ce workshop nous utiliserons la version 5.0 de Django et la version 3.3.4 de Vue.js.
 
 La première étape est d'installer les différents prérequis listés ci-dessous.
 
@@ -37,14 +37,14 @@ C'est une source d'erreur très fréquente, il faut s'y faire au début, cela de
 
 ## Python
 
-Pour le workshop vous aurez besoin de la version de Python >= 3.8.
+Pour le workshop vous aurez besoin de la version de Python >= 3.10.
 
 https://www.python.org/downloads/
 
-> Le workshop a été testé avec la version 3.11.5 de Python
+> Le workshop a été testé avec la version 3.12.1 de Python
 
-> Dépendance provenant du site officiel de Django pour la version utilisée dans ce workshop https://docs.djangoproject.com/en/4.2/faq/install/#what-python-version-can-i-use-with-django  
-> Documentation Django officielle pour la version utilisée de Django https://docs.djangoproject.com/en/4.2/
+> Dépendance provenant du site officiel de Django pour la version utilisée dans ce workshop https://docs.djangoproject.com/en/5.0/faq/install/#what-python-version-can-i-use-with-django  
+> Documentation Django officielle pour la version utilisée de Django https://docs.djangoproject.com/en/5.0/
 
 ```
 python --version
@@ -54,7 +54,7 @@ python --version
 
 pip est le "package manager" qui vient par défaut avec Python, assurez-vous simplement d'avoir une version compatible.
 
-> Le workshop a été testé avec la version 23.2.1 de pip
+> Le workshop a été testé avec la version 23.3.2 de pip
 
 ```
 pip --version
@@ -68,11 +68,11 @@ python -m pip install --upgrade pip
 
 ## Nodejs
 
-Pour le workshop vous aurez besoin de la version de Node.js >= 16.0
+Pour le workshop vous aurez besoin de la version de Node.js >= 18.0
 
 https://nodejs.org/en/
 
-> Le workshop a été testé avec la version 20.6.0 de Node.js
+> Le workshop a été testé avec la version 20.10.0 de Node.js
 
 > Dépendance provenant du site officiel de Vue.js https://vuejs.org/guide/quick-start.html
 
@@ -84,7 +84,7 @@ node --version
 
 npm est le "package manager" qui vient par défaut avec Node.js, assurez-vous simplement d'avoir une version compatible.
 
-> Le workshop a été testé avec la version 10.0.0 de npm
+> Le workshop a été testé avec la version 10.2.3 de npm
 
 ```
 npm --version
@@ -112,7 +112,7 @@ git checkout check
 
 Installer `pipenv` qui s'occupera de gérer nos bibliothèques Python via pip.
 
-> Testé avec la version `pipenv==2023.9.1`
+> Testé avec la version `pipenv==2023.11.15`
 
 ```
 pip install pipenv
@@ -132,7 +132,15 @@ pipenv install
 > pipenv install package==x.y.z
 > ```
 
-Activer l'env virtuel
+Lancer des commandes depuis l'environnement virtuel
+
+```
+pipenv run python ...
+```
+
+Ou activer l'env virtuel
+
+> REMARQUE : Il se peut que sur Windows, l'environnement virtuel est créé dans le dossier personnel de l'utilisateurs. Afin de savoir son emplacement à tout moment, vous pouvez utiliser la commande `pipenv --venv` dans le dossier contenant les dépendances installés.
 
 ```
 source path_to_venv/Scripts/activate
@@ -169,17 +177,17 @@ Vous devez le créer une fois au début et/ou à chaque fois que vous clonez le 
 Migrez
 
 ```
-python manage.py migrate
+pipenv run python manage.py migrate
 ```
 
 Créez un nouvel utilisateur admin et donnez-lui un mot de passe dont vous pourrez vous rappeler.
 
 ```
-python manage.py createsuperuser --email admin@example.com --username admin
+pipenv run python manage.py createsuperuser --email admin@example.com --username admin
 ```
 
-> Si vous êtes sur Windows et que vous avez des erreurs avec ces commandes, vous pouvez essayer de préfixé les commandes python par `winpty`  
-> Exemple : `winpty python manage.py migrate`  
+> Si vous êtes sur Windows et que vous avez des erreurs avec ces commandes, vous pouvez essayer de préfixé les commandes python par `winpty`
+> Exemple : `winpty python manage.py migrate`
 > https://stackoverflow.com/questions/32532900/not-able-to-create-super-user-with-django-manage-py
 
 ## 4. Démarrer le serveur de dev
@@ -187,7 +195,7 @@ python manage.py createsuperuser --email admin@example.com --username admin
 **Commandes**
 
 ```
-python manage.py runserver
+pipenv run python manage.py runserver
 ```
 
 ## 5. Tester l'app Django
@@ -200,10 +208,9 @@ S’il n'y a pas d'erreur et que vous arrivez sur une interface sur laquelle il 
 
 **Commandes**
 
-Dans un nouveau bash exécutez
+Dans un nouveau bash, se rendre dans le dossier `frontend` et exécutez
 
 ```
-cp frontend
 npm install
 ```
 
@@ -283,9 +290,9 @@ pipenv install djangorestframework==version_number
 django-admin startproject tutorial . # ATTENTION le "." en fin de commande est important ici
 django-admin startapp tutorialapp
 
-python manage.py migrate
+pipenv run python manage.py migrate
 
-python manage.py createsuperuser --email admin@example.com --username admin
+pipenv run python manage.py createsuperuser --email admin@example.com --username admin
 ```
 
 Ajoutez 'rest_framework' aux INSTALLED_APPS se trouvant dans le fichier `tutorial/settings.py`.
@@ -300,7 +307,7 @@ INSTALLED_APPS = [
 Le projet backend devrait déjà pouvoir fonctionner.
 
 ```
-python manage.py runserver
+pipenv run python manage.py runserver
 ```
 
 Vous devriez voir une page Django à l'URL : http://127.0.0.1:8000/
