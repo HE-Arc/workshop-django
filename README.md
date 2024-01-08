@@ -18,9 +18,7 @@ TODO-0-0
 ```
 cd api
 
-source path_to_venv/Scripts/activate
-# Or
-. path_to_venv/Scripts/activate
+pipenv shell
 
 python manage.py runserver
 ```
@@ -52,6 +50,8 @@ TODO-0-4
 ```
 pipenv install --dev
 
+pipenv graph
+# Or
 pip freeze
 ```
 
@@ -188,13 +188,12 @@ TODO-2-2
 
 ```
 import axios from "axios";
+import { ref, onMounted } from "vue";
 ```
 
 TODO-2-3
 
 ```
-import { ref, onMounted } from "vue";
-
 const users = ref([]);
 
 const fetchUsers = async () => {
@@ -202,6 +201,10 @@ const fetchUsers = async () => {
 
   users.value = res.data;
 };
+
+onMounted(() => {
+  fetchUsers();
+});
 ```
 
 TODO-2-4
@@ -300,7 +303,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 
 from .models import CaffeineItem
-from .serializers import UserSerializer
+from .serializers import UserSerializer, CaffeineItemSerializer
 
 
 @api_view(["GET", "POST"])
@@ -489,8 +492,8 @@ TODO-5-0
 
 ```
 {
-  path: "/TODOcreatebeverage",
-  name: "TODOcreatebeverage",
+  path: "/beverates/create",
+  name: "beverages.create",
   component: () => import("../views/CreateBeverageView.vue"),
 },
 ```
@@ -615,6 +618,8 @@ TODO-5-7
 TODO-6-0
     
 ```
+from django.contrib.auth.models import User
+
 class ConsumedItem(models.Model):
     user = models.ForeignKey(
         User, related_name="consumed_items", on_delete=models.CASCADE
@@ -666,6 +671,7 @@ from .models import ConsumedItem
 from .serializers import ConsumedItemSerializer
 from rest_framework.decorators import action
 from rest_framework.generics import get_object_or_404
+from rest_framework.response import Response
 
 
 class ConsumedItemViewSet(viewsets.ModelViewSet):
@@ -732,7 +738,7 @@ class ComplexeUserSerializer(UserSerializer):
         ]
 ```
     
-> NOTE: More complexe serializer for users including additionnal fields
+> NOTE: More complexe serializer for users including additionnal fields.
 > Keeping a "default" serializer with the default fields representation
 > also avoids circular calls  
 > e.g.: UserSerializer fetches the consumed_items using the ConsumedItemSerializer
@@ -774,6 +780,7 @@ from .serializers import ComplexeConsumedItemSerializer
 class ConsumedItemViewSet(viewsets.ModelViewSet):
     queryset = ConsumedItem.objects.all()
     serializer_class = ComplexeConsumedItemSerializer
+...
 ```
     
 Et actions à réaliser sur la browsable API de DRF directement, en accédant à /api/consumed-items/
@@ -872,7 +879,7 @@ const fetchUsers = async () => {
 
 const rows = ref([]);
 
-const fetchItems = async () => {
+const fetchConsumedItems = async () => {
   const res = await axios.get("http://127.0.0.1:8000/api/consumed-items/");
 
   rows.value = [];
@@ -891,7 +898,7 @@ const fetchItems = async () => {
 
 onMounted(() => {
   fetchUsers();
-  fetchItems();
+  fetchConsumedItems();
 });
 ```
 
@@ -974,7 +981,7 @@ TODO-8-9
 
 ```
 const updateVal = () => {
-  ...
+  const res = [];
   servingSizeTotal.value = 0;
   caffeineAmountTotal.value = 0;
   servingSizeToday.value = 0;
@@ -982,7 +989,7 @@ const updateVal = () => {
 
   rows.value.forEach((row) => {
     if (row.user == user.value.username) {
-      ...
+      res.push(row);
 
       servingSizeTotal.value += row.serving_size_in_ml;
       caffeineAmountTotal.value += row.caffeine_amount_in_mg;
@@ -1024,7 +1031,7 @@ TODO-8-11
 const remove = async (id) => {
   await axios.delete(`http://127.0.0.1:8000/api/consumed-items/${id}/`);
 
-  await fetchItems();
+  await fetchConsumedItems();
 
   updateVal();
 };
