@@ -1,7 +1,10 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
+from rest_framework.routers import DefaultRouter
 
 # TODO-3-7 Ajouter les urls pour le CaffeineItem en utilisant le Router de DRF
+router = DefaultRouter()
+router.register(r"caffeine-items", views.CaffeineItemViewSet, basename="caffeineitem")
 
 # TODO-6-4 Ajouter les urls pour le ConsumedItem en utilisant le Router de DRF
 # TODO-6-5 Enregistrer 2 entrer de ConsumedItem via la browsable API de DRF,
@@ -18,4 +21,5 @@ urlpatterns = [
         views.UserDetail.as_view(),
         name="user-detail",
     ),
+    path("", include(router.urls)),
 ]

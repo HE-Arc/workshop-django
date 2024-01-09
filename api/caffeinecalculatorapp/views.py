@@ -12,13 +12,90 @@ class UserDetail(generics.RetrieveAPIView):
 
 
 # TODO-3-2 Créer des nouvelles views en function-based pour le CaffeineItem
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
+from .models import CaffeineItem
+from .serializers import CaffeineItemSerializer
+
+# @api_view(["GET", "POST"])
+# def caffeine_item_list(request):
+#     if request.method == "GET":
+#         caffeine_item = CaffeineItem.objects.all()
+#         serializer = CaffeineItemSerializer(caffeine_item, many=True)
+#         return Response(serializer.data)
+    
+#     elif request.method == "POST":
+#         serializer = CaffeineItemSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+        
 # TODO-3-3 Réécrire les views en class-based
+from rest_framework.views import APIView
+
+# class CaffeineItemList(APIView):
+#     def get(self, request, format=None):
+#         caffeine_items = CaffeineItem.objects.all()
+#         serializer = CaffeineItemSerializer(caffeine_items, many=True)
+#         return Response(serializer.data)
+    
+#     def post(self, request, format=None):
+#         serializer = CaffeineItemSerializer(data=request.data)
+#         if serializer.is_valid():
+#             serializer.save()
+#             return Response(serializer.data, status.HTTP_201_CREATED)
+#         return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+        
 # TODO-3-4 Réécrire les views en utilisant les mixins
+from rest_framework import mixins
+
+# class CaffeineItemList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+#     queryset = CaffeineItem.objects.all()
+#     serializer_class = CaffeineItemSerializer
+    
+#     def get(self, request, *args, **kwargs):
+#         return self.list(request, *args, **kwargs)
+    
+#     def post(self, request, *args, **kwargs):
+#         return self.create(request, *args, **kwargs)
+
 # TODO-3-5 Réécrire les views en utilisant les generics
+# class CaffeineItemList(generics.ListCreateAPIView):
+#     queryset = CaffeineItem.objects.all()
+#     serializer_class = CaffeineItemSerializer
+
 # TODO-3-6 Réécrire les views en utilisant les viewsets
+from rest_framework import viewsets
+
+class CaffeineItemViewSet(viewsets.ModelViewSet):
+    queryset = CaffeineItem.objects.all()
+    serializer_class = CaffeineItemSerializer
 
 # TODO-6-3 Créer une nouvelle viewset pour le ConsumedItem et lui ajouter une
 # action POST permettant d'incrémenter le consumed number d'un consumed item
+
+from .models import ConsumedItem
+from .serializers import ConsumedItemSerializer
+from rest_framework.decorators import action
+from rest_framework.generics import get_object_or_404
+
+class ConsumedItemViewSet(viewsets.ModelViewSet):
+    queryset = ConsumedItem.objects.all()
+    serializer_class = ConsumedItemSerializer
+
+    @action(detail=True, methods=["POST"], url_path="increase-by-one")
+    def increase_by_one(self, request, pk):
+        consumed_item = get_object_or_404(ConsumedItem, pk=pk)
+        
+        data = {"consumed_number": consumed_item.consumed_number + 1}
+        serializer = self.get_serializer(consumed_item, data=data, partial=True)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status.HTTP_200_OK)
+        return Response(serializer.errors, status.HTTP_400_BAD_REQUEST)
+
 # TODO-6-6 Remplacer les generic views du User par un viewset
 # TODO-6-10 Mettre à jour le viewset du User pour utiliser le nouveau serializer
 # TODO-6-12 Mettre à jour le viewset de ConsumedItem pour utiliser le nouveau serializer
