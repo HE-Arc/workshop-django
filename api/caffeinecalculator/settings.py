@@ -45,6 +45,10 @@ ALLOWED_HOSTS = []
 # et ajouter "corsheaders.middleware.CorsMiddleware" aux middleware et en 1ère position
 # et ajouter l'url du frontend (localhost + 127.0.0.1) dans une nouvelle var de type tableau
 # nommé CORS_ALLOWED_ORIGINS, la var est à placer après les middleware
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -53,9 +57,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "caffeinecalculatorapp",
+    "rest_framework",
+    "corsheaders",
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
