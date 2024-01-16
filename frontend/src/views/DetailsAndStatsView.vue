@@ -1,6 +1,35 @@
 <script setup>
-// TODO-8-1 Importer axios, ref et onMounted, data
+import axios from "axios";
+import { ref, onMounted} from "vue";
+import { date } from "quasar";
+// TODO-8-1 Importer axios, ref et onMounted, date
 // TODO-8-2 Récupérer tous les consumed items et users de l'API (ref var, async func, axios, onMounted)
+const users = ref([]);
+const fetchUsers = async () => {
+  const res = await axios.get("http://127.0.0.1:8000/api/users/");
+
+  users.value = res.data;
+};
+
+const rows = ref([]);
+
+const fetchConsumedItems = async () => {
+  const res = await axios.get("http://127.0.0.1:8000/api/consumed-items/");
+
+  rows.value = [];
+
+  res.data.forEach((element) => {
+    rows.value.push({
+      id: element.id,
+      consumption_date: element.consumption_date,
+      user: element.user_obj.username,
+      caffeine_item: element.caffeine_item_obj.name,
+      serving_size_in_ml: element.caffeine_item_obj.serving_size_in_ml,
+      caffeine_amount_in_mg: element.caffeine_item_obj.caffeine_amount_in_mg,
+    });
+  });
+};
+
 // TODO-8-5 Ajouter les var suivantes : currentRows (Array), user (null)
 // TODO-8-6 Créer une fonction permettant de mettre à jour le tableau afin de n'afficher uniquement
 // les éléments de l'utilisateur sélectionné

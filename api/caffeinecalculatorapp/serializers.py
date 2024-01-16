@@ -64,4 +64,25 @@ class ConsumedItemSerializer(serializers.HyperlinkedModelSerializer):
         ]
 
 # TODO-6-9 Créer un nouveau serializer héritant de User qui possède davantage de champs (FK)
+class ComplexUserSerializer(UserSerializer):
+    consumed_items = serializers.HyperlinkedRelatedField(
+        many=True, view_name="consumeditem-detail", read_only=True
+    )
+
+    class Meta:
+        model = User
+        fields = UserSerializer.Meta.fields + [
+            "consumed_items",
+        ]
+
 # TODO-6-11 Créer un nouveau serializer héritant de ConsumedItem qui possède davantage de champs (FK)
+class ComplexConsumedItemSerializer(ConsumedItemSerializer):
+    user_obj = UserSerializer(source="user", read_only=True)
+    caffeine_item_obj = CaffeineItemSerializer(source="caffeine_item", read_only=True)
+
+    class Meta:
+        model = ConsumedItem
+        fields = ConsumedItemSerializer.Meta.fields + [
+            "user_obj",
+            "caffeine_item_obj",
+        ]

@@ -26,6 +26,25 @@ onMounted(() => {
 // TODO-4-5 Récupérer tous les users de l'API (ref var, async func, axios, onMounted)
 
 // TODO-7-0 Permettre d'enregistrer des consumed items (axios post, form fields, date.now, url vs id)
+
+const errors = ref(null);
+
+const submit = async (caffeine_item) => {
+  try {
+    errors.value = null;
+    const res = await axios.post("http://127.0.0.1:8000/api/consumed-items/", {
+      user: user.value?.url,
+      caffeine_item: caffeine_item.url,
+      consumed_number: 1,
+      consumption_date: new Date(),
+    });
+
+    console.log(res);
+  } catch (error) {
+    errors.value = error.response.data;
+  }
+};
+
 // TODO-7-2 Créer une variable nommée errors permettant de récupérer les erreurs de l'appel (init à null)
 
 // TODO-9-1 importer le composant ErrorBanner, l'utiliser dans le DOM et tester le résultat
@@ -40,7 +59,9 @@ onMounted(() => {
   <!-- TODO-5-0 Remplacer les TODOcreatebeverage par les bons éléments correspondants (beverages.create) -->
 
   <!-- TODO-7-1 Remplacer les TODOconsumed par les bons éléments correspondants -->
+
   <!-- TODO-7-3 Afficher le contenu de la var errors ici pour l'instant -->
+  {{ errors }}
   <q-page padding>
     <q-select
       v-model="user"
@@ -88,7 +109,7 @@ onMounted(() => {
           <q-card-actions vertical>
             <q-btn
               push
-              @click="TODOconsumed"
+              @click="submit(item)"
               class="q-ma-xs"
               color="primary"
               dense
