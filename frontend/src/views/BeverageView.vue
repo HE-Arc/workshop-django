@@ -1,7 +1,8 @@
 <script setup>
-// TODO-4-1 Importer axios, ref et onMounted
 import axios from 'axios';
+// TODO-4-1 Importer axios, ref et onMounted
 import { ref, onMounted } from 'vue';
+import ErrorBanner from "@/components/ErrorBanner.vue";
 
 // TODO-4-2 Récupérer tous les caffeine items de l'API (ref var, async func, axios, onMounted)
 const caffeineItems = ref([]);
@@ -61,7 +62,7 @@ const submit = async (caffeine_item) => {
   <!-- TODO-7-1 Remplacer les TODOconsumed par les bons éléments correspondants -->
 
   <!-- TODO-7-3 Afficher le contenu de la var errors ici pour l'instant -->
-  {{ errors }}
+  <ErrorBanner :errors="errors"/>
   <q-page padding>
     <q-select
       v-model="user"

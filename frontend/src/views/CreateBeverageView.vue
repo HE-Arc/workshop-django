@@ -2,6 +2,7 @@
 // TODO-5-1 Importer axios, ref
 import axios from 'axios';
 import { ref } from 'vue';
+import ErrorBanner from "@/components/ErrorBanner.vue";
 
 // TODO-5-2 Créer des variables string pour chaque tous les éléments de coffeine item :
 //name, description, servingSize et caffeineAmount (ref var)
@@ -41,7 +42,7 @@ const submit = async () => {
 
 <template>
   <!-- TODO-5-6 Afficher le contenu de la var errors ici pour l'instant -->
-  {{ errors }}
+  <ErrorBanner :errors="errors" />
   <!-- TODO-5-7 Remplacer les TODOform par les bons éléments correspondants -->
   <!-- TODO-5-8 Essayer d'enregistrer des éléments sur le site et voir si ces éléments sont correctement
   ajoutés à la BDD et affichés sur la page /beverages -->
