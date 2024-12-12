@@ -9,20 +9,20 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore"
   },
   "dependencies": {
-    "@quasar/extras": "^1.16.9",
-    "axios": "^1.6.3",
-    "quasar": "^2.14.2",
+    "@quasar/extras": "^1.16.15",
+    "axios": "^1.7.9",
+    "quasar": "^2.17.4",
     "vue": "^3.2.45",
-    "vue-router": "^4.2.5"
+    "vue-router": "^4.5.0"
   },
   "devDependencies": {
-    "@quasar/vite-plugin": "^1.6.0",
-    "@rushstack/eslint-patch": "^1.6.1",
+    "@quasar/vite-plugin": "^1.8.1",
+    "@rushstack/eslint-patch": "^1.10.4",
     "@vitejs/plugin-vue": "^4.6.2",
     "@vue/eslint-config-prettier": "^7.1.0",
-    "eslint": "^8.56.0",
-    "eslint-plugin-vue": "^9.19.2",
+    "eslint": "^8.57.1",
+    "eslint-plugin-vue": "^9.32.0",
     "prettier": "^2.8.8",
-    "vite": "^4.5.1"
+    "vite": "^4.5.5"
   }
 }
