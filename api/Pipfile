@@ -11,4 +11,4 @@ django-cors-headers = ">=4.6"
 [dev-packages]
 
 [requires]
-python_version = "3.12.1"
+python_version = ">=3.12"
