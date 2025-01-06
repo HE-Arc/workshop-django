@@ -2,26 +2,24 @@
 
 Ce Workshop Django est donné aux étudiants de 3ème année à la HE-Arc dans le cadre du cours de développement web.
 
-L'objectif de ce workshop est de transmettre aux étudiants les bases et les bonnes pratiques de la création d'un projet web avec le Framework Django et Vuejs. Ce workshop a également pour but de fournir un point de départ aux étudiants afin de leur permettre de créer leur projet de semestre.
+L'objectif de ce workshop est de transmettre les bases et les bonnes pratiques de la création d'un projet web avec les frameworks Django et VueJS, de façon à favoriser un bon démarrage du projet du semestre de printemps.
 
 Les prochaines étapes permettent de mettre en place l'environnement de développement et de suivre le workshop dans son intégralité.
 
 # Explication des branches
 
-Branches générales
+Branches par année
+- 20xx-start : la branche contenant le code de départ du workshop Django, réalisé avec les étudiants de l'année 20xx
+- 20xx-end : la branche contenant le code solution du workshop Django, réalisé avec les étudiants de l'année 20xx
 
+Branches générales (base pour les branches ci-dessus)
 - main : la branche contenant la version du README le plus à jour
 - start : la branche contenant le code de départ du workshop Django
 - end : la branche contenant le code solution du workshop Django
-
-Branches par année
-
-- xxxx-start : la branche contenant le code de départ du workshop Django, réalisé avec les étudiants de l'année xxxx
-- xxxx-end : la branche contenant le code solution du workshop Django, réalisé avec les étudiants de l'année xxxx
-
+  
 # Prérequis
 
-Dans ce workshop nous utiliserons la version 5.0 de Django et la version 3.3.4 de Vue.js.
+Dans ce workshop nous utiliserons la version 5.1 de Django et la version 3.5 de Vue.js.
 
 La première étape est d'installer les différents prérequis listés ci-dessous.
 
@@ -37,14 +35,14 @@ C'est une source d'erreur très fréquente, il faut s'y faire au début, cela de
 
 ## Python
 
-Pour le workshop vous aurez besoin de la version de Python >= 3.10.
+Pour le workshop vous aurez besoin de la version de Python >= 3.12.
 
 https://www.python.org/downloads/
 
-> Le workshop a été testé avec la version 3.12.1 de Python
+> Le workshop a été testé avec la version 3.13.1 de Python
 
-> Dépendance provenant du site officiel de Django pour la version utilisée dans ce workshop https://docs.djangoproject.com/en/5.0/faq/install/#what-python-version-can-i-use-with-django  
-> Documentation Django officielle pour la version utilisée de Django https://docs.djangoproject.com/en/5.0/
+> Dépendance provenant du site officiel de Django pour la version utilisée dans ce workshop https://docs.djangoproject.com/en/5.1/faq/install/#what-python-version-can-i-use-with-django  
+> Documentation Django officielle pour la version utilisée de Django https://docs.djangoproject.com/en/5.1/
 
 ```
 python --version
@@ -54,7 +52,7 @@ python --version
 
 pip est le "package manager" qui vient par défaut avec Python, assurez-vous simplement d'avoir une version compatible.
 
-> Le workshop a été testé avec la version 23.3.2 de pip
+> Testé avec la version 24.3.1 de pip
 
 ```
 pip --version
@@ -65,6 +63,36 @@ Si nécessaire, pip peut être mis à niveau avec la commande suivante.
 ```
 python -m pip install --upgrade pip
 ```
+## pipenv
+
+`pipenv` qui gère les environnements virtuels nos dépendances via pip. Il s'occupe de copier les bonnes versions des bibliothèques locales à notre projet.
+
+> Testé avec la version `pipenv==2024.4.0`
+
+```
+pip install pipenv
+```
+<details>
+<summary><b>Détails et explications</b></summary>
+
+> *Virtual environment* en anglais, souvent abrégé **venv**
+
+Le gestionnaire de paquet en Python s'appelle pip. La technique de base consiste à créer un fichier nommé requirement.txt dans lequel nous allons pouvoir lister toutes les bibliothèques (dépendances) dont notre projet a besoin pour fonctionner correctement. Dans ce workshop nous utilisons une technique un peu plus avancée en utilisant pipenv qui permet d'organiser un peu mieux nos bibliothèques (un peu à l'image de composer ou de npm).
+
+Par défaut pip installe toutes les bibliothèques globalement sur l'ordinateur, ce qui pourrait paraître comme une bonne idée à la base, car si nous avons un autre projet qui nécessite toutes ou certaines mêmes bibliothèques, les bibliothèques en question seront déjà installées... MAIS...
+
+Mais en réfléchissant un peu on s'aperçoit très vite que c'est une très mauvaise idée. Certaines bibliothèques pourraient ne pas être compatibles ce qui pourrait rapidement devenir difficile à gérer.
+
+Le mieux est donc de séparer toutes les bibliothèques de tous les projets quitte à devoir réinstaller dans certains cas la même version de certaines d'entre elles.
+
+Pour ce faire nous allons utiliser les environnements virtuels qui nous permettent d'isoler un environnement afin de le séparer de celui de base et des autres que nous allons créer pour d'autres projets.
+
+Il existe plusieurs bibliothèques qui permettent toutes de créer des environnements virtuels. Dans notre cas et comme nous utilisons pipenv, nous utiliserons celle proposée par défaut par pipenv.
+
+Vous devez le créer une fois au début et/ou à chaque fois que vous clonez le projet. Ensuite une fois qu'il est créé pour la première fois vous n'aurez plus qu'à l'activer. Attention il ne faut pas oublier de le réactiver.
+
+**IMPORTANT** : les dossiers et fichiers de l'environnement virtuel ne doivent JAMAIS être push (en utilisant pipenv, c'est le comportement par défaut, car les env virtuels ne sont pas créés dans le dossier du projet. En principe vous n'avez donc rien à faire) !  
+</details>
 
 ## Nodejs
 
@@ -103,20 +131,12 @@ Vous trouverez ci-dessous les quelques commandes qui vous permettront de commenc
 ```
 git clone git@github.com:HE-Arc/workshop-django.git
 cd workshop-django
-git checkout check
+git switch 2025-start
 ```
 
 ## 2. Installer les dépendances de l'app Django dans un venv, c'est très important... vraiment !
 
 **Commandes**
-
-Installer `pipenv` qui s'occupera de gérer nos bibliothèques Python via pip.
-
-> Testé avec la version `pipenv==2023.11.15`
-
-```
-pip install pipenv
-```
 
 Installer les bibliothèques du projet.
 
@@ -127,7 +147,7 @@ pipenv install
 
 > Cette commande crée un environnement virtuel et y installe toutes les bibliothèques nécessaires.
 
-> **ATTENTION** ! Pour installer une bibliothèque dans notre projet il faudra utiliser pipenv directement et non plus pip.  
+> **ATTENTION** ! Pour installer une nouvelle bibliothèque dans notre projet il faudra utiliser pipenv directement et non plus pip.  
 > ```
 > pipenv install package==x.y.z
 > ```
@@ -147,26 +167,6 @@ pipenv run python ...
 ```
 
 > Si la commande ne fonctionne pas, c'est peut être un problème de permission, essayez d'exécuter en mode admin.
-
-**Détails et explications**
-
-> Virtual environment en anglais, souvent abrégé venv
-
-Le gestionnaire de paquet en Python s'appelle pip. La technique de base consiste à créer un fichier nommé requirement.txt dans lequel nous allons pouvoir lister toutes les bibliothèques (dépendances) dont notre projet a besoin pour fonctionner correctement. Dans ce workshop nous utilisons une technique un peu plus avancée en utilisant pipenv qui permet d'organiser un peu mieux nos bibliothèques (un peu à l'image de composer ou de npm).
-
-Par défaut pip installe toutes les bibliothèques globalement sur l'ordinateur, ce qui pourrait paraître comme une bonne idée à la base, car si nous avons un autre projet qui nécessite toutes ou certaines mêmes bibliothèques, les bibliothèques en question seront déjà installées... MAIS...
-
-Mais en réfléchissant un peu on s'aperçoit très vite que c'est une très mauvaise idée. Certaines bibliothèques pourraient ne pas être compatibles ce qui pourrait rapidement devenir difficile à gérer.
-
-Le mieux est donc de séparer toutes les bibliothèques de tous les projets quitte à devoir réinstaller dans certains cas la même version de certaines d'entre elles.
-
-Pour ce faire nous allons utiliser les environnements virtuels qui nous permettent d'isoler un environnement afin de le séparer de celui de base et des autres que nous allons créer pour d'autres projets.
-
-Il existe plusieurs bibliothèques qui permettent toutes de créer des environnements virtuels. Dans notre cas et comme nous utilisons pipenv, nous utiliserons celle proposée par défaut par pipenv.
-
-Vous devez le créer une fois au début et/ou à chaque fois que vous clonez le projet. Ensuite une fois qu'il est créé pour la première fois vous n'aurez plus qu'à l'activer. Attention il ne faut pas oublier de le réactiver.
-
-**IMPORTANT** : les dossiers et fichiers de l'environnement virtuel ne doivent JAMAIS être push (en utilisant pipenv, c'est le comportement par défaut, car les env virtuels ne sont pas créés dans le dossier du projet. En principe vous n'avez donc rien à faire) !  
 
 ## 3. Migrer et créer un utilisateur admin
 
@@ -198,7 +198,7 @@ python manage.py runserver
 
 ## 5. Tester l'app Django
 
-En allant à l'URL proposée dans la console, après avoir démarré le serveur de dev, aller sur `/admin` et tenter de vous connecter avec l'utilisateur créé précédemment.
+En allant à l'URL proposée dans la console, après avoir démarré le serveur de dev, aller sur `/admin` et tenter de vous connecter avec l'utilisateur créé précédemment. Par défaut : http://localhost:8000/admin
 
 S’il n'y a pas d'erreur et que vous arrivez sur une interface sur laquelle il est écrit "Django Administration", c'est tout bon et vous pouvez passer à la suite.
 
@@ -233,6 +233,7 @@ Une fois les 2 serveurs allumés...
 **Test**
 
 En allant à l'URL proposée dans la console, après avoir démarré le serveur de dev, vous devriez voir une application avec du texte et un GIF.
+Par défaut : http://localhost:5173/
 
 Lisez le texte et vérifiez que ce qui est indiqué fonctionne correctement pour vous, si c'est le cas... C'est que vous êtes prêt pour le workshop !
 
