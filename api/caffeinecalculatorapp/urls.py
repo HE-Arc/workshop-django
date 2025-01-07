@@ -9,10 +9,14 @@ router.register(r"caffeine-items", views.CaffeineItemViewSet,
                 basename="caffeineitem")
 
 # TODO-6-4 Ajouter les urls pour le ConsumedItem en utilisant le Router de DRF
+router.register(r"consumed-items", views.ConsumedItemViewSet,
+                basename="consumeditem")
+
 # TODO-6-5 Enregistrer 2 entrer de ConsumedItem via la browsable API de DRF,
 # en utilisant le POST form /api/consumed-items/
 # TODO-6-7 Ajouter les urls pour le User en utilisant le Router de DRF et supprimer les
 # anciennes routes
+router.register(r"users", views.UserViewSet, basename="user")
 # TODO-6-8 Vérifier que les routes pour les 3 ressources fonctionnent toujours
 
 urlpatterns = [

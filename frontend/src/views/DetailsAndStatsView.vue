@@ -1,14 +1,93 @@
 <script setup>
 // TODO-8-1 Importer axios, ref et onMounted, data
+import axios from "axios";
+import { ref, onMounted } from "vue";
+import { date } from "quasar";
 // TODO-8-2 Récupérer tous les consumed items et users de l'API (ref var, async func, axios, onMounted)
+const users = ref([]);
+
+
+const fetchUsers = async () => {
+  const res = await axios.get("http://127.0.0.1:8000/api/users/");
+
+  users.value = res.data;
+};
+
+const rows = ref([]);
+
+const fetchConsumedItems = async () => {
+  const res = await axios.get("http://127.0.0.1:8000/api/consumed-items/");
+
+  rows.value = [];
+
+  res.data.forEach((element) => {
+    rows.value.push({
+      id: element.id,
+      consumption_date: element.consumption_date,
+      user: element.user_obj.username,
+      caffeine_item: element.caffeine_item_obj.name,
+      serving_size_in_ml: element.caffeine_item_obj.serving_size_in_ml,
+      caffeine_amount_in_mg: element.caffeine_item_obj.caffeine_amount_in_mg,
+    });
+  });
+};
+
+onMounted(() => {
+  fetchUsers();
+  fetchConsumedItems();
+});
+
 // TODO-8-5 Ajouter les var suivantes : currentRows (Array), user (null)
+const user = ref(null);
+    
+const currentRows = ref([]);
+
 // TODO-8-6 Créer une fonction permettant de mettre à jour le tableau afin de n'afficher uniquement
 // les éléments de l'utilisateur sélectionné
+const updateVal = () => {
+  const res = [];
+  servingSizeTotal.value = 0;
+  caffeineAmountTotal.value = 0;
+  servingSizeToday.value = 0;
+  caffeineAmountToday.value = 0;
+
+  rows.value.forEach((row) => {
+    if (row.user == user.value.username) {
+      res.push(row);
+      servingSizeTotal.value += row.serving_size_in_ml;
+      caffeineAmountTotal.value += row.caffeine_amount_in_mg;
+
+      const rowDate = new Date(row.consumption_date);
+      const currentDate = new Date();
+      if (
+        rowDate.getFullYear() === currentDate.getFullYear() &&
+        rowDate.getMonth() === currentDate.getMonth() &&
+        rowDate.getDate() === currentDate.getDate()
+      ) {
+        servingSizeToday.value += row.serving_size_in_ml;
+        caffeineAmountToday.value += row.caffeine_amount_in_mg;
+      }
+    }
+  });
+
+  currentRows.value = res;
+};
 // TODO-8-8 Ajouter les var suivantes : servingSizeTotal (null), caffeineAmountTotal (null),
 // servingSizeToday(null), caffeineAmountToday(null)
+const servingSizeTotal = ref(null);
+const caffeineAmountTotal = ref(null);
+const servingSizeToday = ref(null);
+const caffeineAmountToday = ref(null);
 // TODO-8-9 Calculer la valeur des nouvelles variables dans la fonction de mise à jour des éléments du tableau
-// TODO-8-11 Créer une fonction permettant de supprimer un élément dans le tableau
 
+// TODO-8-11 Créer une fonction permettant de supprimer un élément dans le tableau
+const remove = async (id) => {
+  await axios.delete(`http://127.0.0.1:8000/api/consumed-items/${id}/`);
+
+  await fetchConsumedItems();
+
+  updateVal();
+};
 const initialPagination = {
   sortBy: "id",
   descending: true,
@@ -65,19 +144,22 @@ const columns = [
 
 <template>
   <!-- TODO-8-3 Afficher les consumed items reçus de l'API -->
+  {{ rows }}
   <!-- TODO-8-4 Remplacer les TODOconsumed par les bons éléments correspondants -->
+
   <!-- TODO-8-7 Remplacer les TODOuser par les bons éléments correspondants et remplacer rows
   par currentRows dans la table en dessous afin de n'afficher que les éléments de l'utilisateur actuel -->
+
   <!-- TODO-8-10 Remplacer les TODOToday par les bons éléments correspondants -->
   <!-- TODO-8-12 Remplacer les TODOremove par les bons éléments correspondants -->
   <q-page padding>
     <q-select
-      v-model="TODOuser"
-      @update:model-value="TODOuser"
+      v-model="user"
+      @update:model-value="updateVal"
       class="q-mb-lg"
-      option-value="TODOuser"
-      option-label="TODOuser"
-      :options="TODOuser"
+      option-value="id"
+      option-label="username"
+      :options="users"
       label="User"
       filter="1"
       outlined
@@ -91,16 +173,16 @@ const columns = [
 
           <q-separator inset />
 
-          <div v-if="TODOuser">
+          <div v-if="users">
             <q-card-section class="text-center">
               <div class="text-h6">Today</div>
               <div>Serving size</div>
               <q-badge class="text-h6 q-pa-xs" color="purple">
-                TODOToday ml
+               {{ servingSizeToday }} ml
               </q-badge>
               <div class="q-mt-md">Caffeine amount</div>
               <q-badge class="text-h6 q-pa-xs" color="teal">
-                TODOToday mg
+                {{ caffeineAmountToday }} mg
               </q-badge>
             </q-card-section>
 
@@ -136,11 +218,11 @@ const columns = [
               <div class="text-h6">Total</div>
               <div>Serving size</div>
               <q-badge class="text-h6 q-pa-xs" color="purple">
-                TODOToday ml
+                {{ servingSizeToday }} ml
               </q-badge>
               <div class="q-mt-md">Caffeine amount</div>
               <q-badge class="text-h6 q-pa-xs" color="teal">
-                TODOToday mg
+                {{ caffeineAmountToday }} mg
               </q-badge>
             </q-card-section>
           </div>
@@ -155,15 +237,15 @@ const columns = [
         </q-card>
 
         <q-table
-          :pagination="TODOconsumed"
-          :rows="TODOconsumed"
-          :columns="TODOconsumed"
+          :pagination="initialPagination"
+          :rows="rows"
+          :columns="columns"
           row-key="name"
         >
           <template #body-cell-id="props">
             <q-td key="id" :props="props">
               <q-btn
-                @click="TODOremove"
+                @click="remove(props.row.id)"
                 class="q-ma-xs"
                 color="negative"
                 icon="mdi-delete"
