@@ -11,6 +11,7 @@
   "dependencies": {
     "@quasar/extras": "^1.16.9",
     "axios": "^1.6.3",
+    "caffeinecalculator": "file:",
     "quasar": "^2.14.2",
     "vue": "^3.2.45",
     "vue-router": "^4.2.5"
