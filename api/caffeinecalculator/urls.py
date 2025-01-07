@@ -1,3 +1,5 @@
+from django.urls import include
+
 """caffeinecalculator URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -19,4 +21,5 @@ from django.urls import path
 urlpatterns = [
     path("admin/", admin.site.urls),
     # TODO-1-8 Ajouter les urls de l'app caffeinecalculatorapp afin de les rendre disponibles
+    path("api/", include("caffeinecalculatorapp.urls")),
 ]

@@ -47,6 +47,7 @@ ALLOWED_HOSTS = []
 # nommé CORS_ALLOWED_ORIGINS, la var est à placer après les middleware
 
 INSTALLED_APPS = [
+    "rest_framework",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",

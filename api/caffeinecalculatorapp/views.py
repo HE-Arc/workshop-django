@@ -1,10 +1,18 @@
+from django.contrib.auth.models import User
+from rest_framework import generics
+from .serializers import UserSerializer
+
 # TODO-1-6 Créer des nouvelles views pour le User (décommenter simplement ce code, plus de détails après)
-# class UserList(generics.ListAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
-# class UserDetail(generics.RetrieveAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
+
+
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 # TODO-3-2 Créer des nouvelles views en function-based pour le CaffeineItem
