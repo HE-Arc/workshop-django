@@ -1,12 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 
-// TODO-4-0 Remplacer les TODObeverage par les bons éléments correspondants (beverages)
-
-// TODO-5-0 Remplacer les TODOcreatebeverage par les bons éléments correspondants (beverages.create)
-
-// TODO-8-0 Remplacer les TODOdetailsandstats par les bons éléments correspondants (detailsAndStats) -->
-
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -15,6 +9,7 @@ const router = createRouter({
       name: "home",
       component: HomeView,
     },
+    // TODO-4-0 Remplacer les TODObeverage par les bons éléments correspondants (beverages)
     {
       path: "/beverages",
       name: "beverages",
@@ -23,11 +18,13 @@ const router = createRouter({
       // which is lazy-loaded when the route is visited.
       component: () => import("../views/BeverageView.vue"),
     },
+    // TODO-5-0 Remplacer les TODOcreatebeverage par les bons éléments correspondants (beverages.create)
     {
       path: "/beverates/create",
       name: "beverages.create",
       component: () => import("../views/CreateBeverageView.vue"),
     },
+    // TODO-8-0 Remplacer les TODOdetailsandstats par les bons éléments correspondants (detailsAndStats) -->
     {
       path: "/details-and-stats",
       name: "detailsAndStats",
