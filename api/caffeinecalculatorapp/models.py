@@ -1,3 +1,4 @@
+from django.contrib.auth.models import User
 from django.db import models
 
 # TODO-1-0 Créer un nouveau model nommé CaffeineItem et ajouter
@@ -17,6 +18,24 @@ class CaffeineItem(models.Model):
 
 # TODO-1-1 Créer une nouvelle migration et l'appliquer
 
+
 # TODO-6-0 Créer un nouveau model nommé ConsumedItem et ajouter
 # les champs : user, caffeine_item, consumed_number, consumption_date, created, updated
+
+
+class ConsumedItem(models.Model):
+    user = models.ForeignKey(
+        User, related_name="consumed_items", on_delete=models.CASCADE
+    )
+    caffeine_item = models.ForeignKey(
+        CaffeineItem,
+        related_name="consumed_items",
+        on_delete=models.SET_NULL,
+        null=True,
+    )
+    consumed_number = models.PositiveIntegerField()
+    consumption_date = models.DateTimeField()
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
 # TODO-6-1 Créer une nouvelle migration et l'appliquer
