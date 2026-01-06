@@ -131,7 +131,7 @@ Vous trouverez ci-dessous les quelques commandes qui vous permettront de commenc
 ```
 git clone git@github.com:HE-Arc/workshop-django.git
 cd workshop-django
-git switch 2025-start
+git switch 2026-start
 ```
 
 ## 2. Installer les dépendances de l'app Django dans un venv, c'est très important... vraiment !
